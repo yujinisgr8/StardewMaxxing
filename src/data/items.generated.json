@@ -1,0 +1,1430 @@
+[
+  {
+    "id": "blueberry",
+    "nameEn": "Blueberry",
+    "nameZh": "蓝莓",
+    "basePrice": 50,
+    "category": "fruit",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Blueberry"
+  },
+  {
+    "id": "melon",
+    "nameEn": "Melon",
+    "nameZh": "甜瓜",
+    "basePrice": 250,
+    "category": "fruit",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Melon"
+  },
+  {
+    "id": "strawberry",
+    "nameEn": "Strawberry",
+    "nameZh": "草莓",
+    "basePrice": 120,
+    "category": "fruit",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Strawberry"
+  },
+  {
+    "id": "cranberries",
+    "nameEn": "Cranberries",
+    "nameZh": "蔓越莓",
+    "basePrice": 75,
+    "category": "fruit",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Cranberries"
+  },
+  {
+    "id": "ancient_fruit",
+    "nameEn": "Ancient Fruit",
+    "nameZh": "上古水果",
+    "basePrice": 550,
+    "category": "fruit",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Ancient_Fruit"
+  },
+  {
+    "id": "starfruit",
+    "nameEn": "Starfruit",
+    "nameZh": "杨桃",
+    "basePrice": 750,
+    "category": "fruit",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Starfruit"
+  },
+  {
+    "id": "hot_pepper",
+    "nameEn": "Hot Pepper",
+    "nameZh": "辣椒",
+    "basePrice": 40,
+    "category": "fruit",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Hot_Pepper"
+  },
+  {
+    "id": "grape",
+    "nameEn": "Grape",
+    "nameZh": "葡萄",
+    "basePrice": 80,
+    "category": "fruit",
+    "tags": [
+      "edible",
+      "grape"
+    ],
+    "source": "https://stardewvalleywiki.com/Grape"
+  },
+  {
+    "id": "rhubarb",
+    "nameEn": "Rhubarb",
+    "nameZh": "大黄",
+    "basePrice": 220,
+    "category": "fruit",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Rhubarb"
+  },
+  {
+    "id": "cactus_fruit",
+    "nameEn": "Cactus Fruit",
+    "nameZh": "仙人掌果子",
+    "basePrice": 75,
+    "category": "fruit",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Cactus_Fruit"
+  },
+  {
+    "id": "crystal_fruit",
+    "nameEn": "Crystal Fruit",
+    "nameZh": "水晶果",
+    "basePrice": 150,
+    "category": "fruit",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Crystal_Fruit"
+  },
+  {
+    "id": "spice_berry",
+    "nameEn": "Spice Berry",
+    "nameZh": "香味浆果",
+    "basePrice": 80,
+    "category": "fruit",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Spice_Berry"
+  },
+  {
+    "id": "wild_plum",
+    "nameEn": "Wild Plum",
+    "nameZh": "野梅",
+    "basePrice": 80,
+    "category": "fruit",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Wild_Plum"
+  },
+  {
+    "id": "blackberry",
+    "nameEn": "Blackberry",
+    "nameZh": "黑莓",
+    "basePrice": 20,
+    "category": "fruit",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Blackberry"
+  },
+  {
+    "id": "salmonberry",
+    "nameEn": "Salmonberry",
+    "nameZh": "美洲大树莓",
+    "basePrice": 5,
+    "category": "fruit",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Salmonberry"
+  },
+  {
+    "id": "powdermelon",
+    "nameEn": "Powdermelon",
+    "nameZh": "霜瓜",
+    "basePrice": 60,
+    "category": "fruit",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Powdermelon"
+  },
+  {
+    "id": "qi_fruit",
+    "nameEn": "Qi Fruit",
+    "nameZh": "齐瓜",
+    "basePrice": 1,
+    "category": "fruit",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Qi_Fruit"
+  },
+  {
+    "id": "apple",
+    "nameEn": "Apple",
+    "nameZh": "苹果",
+    "basePrice": 100,
+    "category": "fruit",
+    "tags": [
+      "edible",
+      "tree"
+    ],
+    "source": "https://stardewvalleywiki.com/Apple"
+  },
+  {
+    "id": "apricot",
+    "nameEn": "Apricot",
+    "nameZh": "杏子",
+    "basePrice": 50,
+    "category": "fruit",
+    "tags": [
+      "edible",
+      "tree"
+    ],
+    "source": "https://stardewvalleywiki.com/Apricot"
+  },
+  {
+    "id": "cherry",
+    "nameEn": "Cherry",
+    "nameZh": "樱桃",
+    "basePrice": 80,
+    "category": "fruit",
+    "tags": [
+      "edible",
+      "tree"
+    ],
+    "source": "https://stardewvalleywiki.com/Cherry"
+  },
+  {
+    "id": "orange",
+    "nameEn": "Orange",
+    "nameZh": "橙子",
+    "basePrice": 100,
+    "category": "fruit",
+    "tags": [
+      "edible",
+      "tree"
+    ],
+    "source": "https://stardewvalleywiki.com/Orange"
+  },
+  {
+    "id": "peach",
+    "nameEn": "Peach",
+    "nameZh": "桃子",
+    "basePrice": 140,
+    "category": "fruit",
+    "tags": [
+      "edible",
+      "tree"
+    ],
+    "source": "https://stardewvalleywiki.com/Peach"
+  },
+  {
+    "id": "pomegranate",
+    "nameEn": "Pomegranate",
+    "nameZh": "石榴",
+    "basePrice": 140,
+    "category": "fruit",
+    "tags": [
+      "edible",
+      "tree"
+    ],
+    "source": "https://stardewvalleywiki.com/Pomegranate"
+  },
+  {
+    "id": "banana",
+    "nameEn": "Banana",
+    "nameZh": "香蕉",
+    "basePrice": 150,
+    "category": "fruit",
+    "tags": [
+      "edible",
+      "tree"
+    ],
+    "source": "https://stardewvalleywiki.com/Banana"
+  },
+  {
+    "id": "mango",
+    "nameEn": "Mango",
+    "nameZh": "芒果",
+    "basePrice": 130,
+    "category": "fruit",
+    "tags": [
+      "edible",
+      "tree"
+    ],
+    "source": "https://stardewvalleywiki.com/Mango"
+  },
+  {
+    "id": "parsnip",
+    "nameEn": "Parsnip",
+    "nameZh": "防风草",
+    "basePrice": 35,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Parsnip"
+  },
+  {
+    "id": "green_bean",
+    "nameEn": "Green Bean",
+    "nameZh": "青豆",
+    "basePrice": 40,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Green_Bean"
+  },
+  {
+    "id": "cauliflower",
+    "nameEn": "Cauliflower",
+    "nameZh": "花椰菜",
+    "basePrice": 175,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Cauliflower"
+  },
+  {
+    "id": "potato",
+    "nameEn": "Potato",
+    "nameZh": "土豆",
+    "basePrice": 80,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Potato"
+  },
+  {
+    "id": "garlic",
+    "nameEn": "Garlic",
+    "nameZh": "蒜",
+    "basePrice": 60,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Garlic"
+  },
+  {
+    "id": "kale",
+    "nameEn": "Kale",
+    "nameZh": "甘蓝菜",
+    "basePrice": 110,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Kale"
+  },
+  {
+    "id": "beet",
+    "nameEn": "Beet",
+    "nameZh": "甜菜",
+    "basePrice": 100,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Beet"
+  },
+  {
+    "id": "radish",
+    "nameEn": "Radish",
+    "nameZh": "萝卜",
+    "basePrice": 90,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Radish"
+  },
+  {
+    "id": "red_cabbage",
+    "nameEn": "Red Cabbage",
+    "nameZh": "红叶卷心菜",
+    "basePrice": 260,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Red_Cabbage"
+  },
+  {
+    "id": "artichoke",
+    "nameEn": "Artichoke",
+    "nameZh": "洋蓟",
+    "basePrice": 160,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Artichoke"
+  },
+  {
+    "id": "corn",
+    "nameEn": "Corn",
+    "nameZh": "玉米",
+    "basePrice": 50,
+    "category": "vegetable",
+    "tags": [
+      "edible",
+      "oilseed"
+    ],
+    "source": "https://stardewvalleywiki.com/Corn"
+  },
+  {
+    "id": "eggplant",
+    "nameEn": "Eggplant",
+    "nameZh": "茄子",
+    "basePrice": 60,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Eggplant"
+  },
+  {
+    "id": "pumpkin",
+    "nameEn": "Pumpkin",
+    "nameZh": "南瓜",
+    "basePrice": 320,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Pumpkin"
+  },
+  {
+    "id": "bok_choy",
+    "nameEn": "Bok Choy",
+    "nameZh": "小白菜",
+    "basePrice": 80,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Bok_Choy"
+  },
+  {
+    "id": "yam",
+    "nameEn": "Yam",
+    "nameZh": "山药",
+    "basePrice": 160,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Yam"
+  },
+  {
+    "id": "amaranth",
+    "nameEn": "Amaranth",
+    "nameZh": "苋菜",
+    "basePrice": 150,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Amaranth"
+  },
+  {
+    "id": "tomato",
+    "nameEn": "Tomato",
+    "nameZh": "西红柿",
+    "basePrice": 60,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Tomato"
+  },
+  {
+    "id": "tea_leaves",
+    "nameEn": "Tea Leaves",
+    "nameZh": "茶叶",
+    "basePrice": 50,
+    "category": "vegetable",
+    "tags": [
+      "tea_leaves"
+    ],
+    "source": "https://stardewvalleywiki.com/Tea_Leaves"
+  },
+  {
+    "id": "hops",
+    "nameEn": "Hops",
+    "nameZh": "啤酒花",
+    "basePrice": 25,
+    "category": "vegetable",
+    "tags": [
+      "hops"
+    ],
+    "source": "https://stardewvalleywiki.com/Hops"
+  },
+  {
+    "id": "wheat",
+    "nameEn": "Wheat",
+    "nameZh": "小麦",
+    "basePrice": 25,
+    "category": "vegetable",
+    "tags": [
+      "wheat"
+    ],
+    "source": "https://stardewvalleywiki.com/Wheat"
+  },
+  {
+    "id": "coffee_bean",
+    "nameEn": "Coffee Bean",
+    "nameZh": "咖啡豆",
+    "basePrice": 15,
+    "category": "vegetable",
+    "tags": [
+      "coffee_bean"
+    ],
+    "source": "https://stardewvalleywiki.com/Coffee_Bean"
+  },
+  {
+    "id": "unmilled_rice",
+    "nameEn": "Unmilled Rice",
+    "nameZh": "未碾米",
+    "basePrice": 30,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Unmilled_Rice"
+  },
+  {
+    "id": "taro_root",
+    "nameEn": "Taro Root",
+    "nameZh": "芋头",
+    "basePrice": 100,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Taro_Root"
+  },
+  {
+    "id": "fiddlehead_fern",
+    "nameEn": "Fiddlehead Fern",
+    "nameZh": "蕨菜",
+    "basePrice": 90,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Fiddlehead_Fern"
+  },
+  {
+    "id": "tulip",
+    "nameEn": "Tulip",
+    "nameZh": "郁金香",
+    "basePrice": 30,
+    "category": "flower",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Tulip"
+  },
+  {
+    "id": "blue_jazz",
+    "nameEn": "Blue Jazz",
+    "nameZh": "蓝爵",
+    "basePrice": 50,
+    "category": "flower",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Blue_Jazz"
+  },
+  {
+    "id": "summer_spangle",
+    "nameEn": "Summer Spangle",
+    "nameZh": "夏季亮片",
+    "basePrice": 90,
+    "category": "flower",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Summer_Spangle"
+  },
+  {
+    "id": "poppy",
+    "nameEn": "Poppy",
+    "nameZh": "虞美人花",
+    "basePrice": 140,
+    "category": "flower",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Poppy"
+  },
+  {
+    "id": "sunflower",
+    "nameEn": "Sunflower",
+    "nameZh": "向日葵",
+    "basePrice": 80,
+    "category": "flower",
+    "tags": [
+      "oilseed"
+    ],
+    "source": "https://stardewvalleywiki.com/Sunflower"
+  },
+  {
+    "id": "fairy_rose",
+    "nameEn": "Fairy Rose",
+    "nameZh": "玫瑰仙子",
+    "basePrice": 290,
+    "category": "flower",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Fairy_Rose"
+  },
+  {
+    "id": "wild_horseradish",
+    "nameEn": "Wild Horseradish",
+    "nameZh": "野山葵",
+    "basePrice": 50,
+    "category": "forage",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Wild_Horseradish"
+  },
+  {
+    "id": "daffodil",
+    "nameEn": "Daffodil",
+    "nameZh": "黄水仙",
+    "basePrice": 30,
+    "category": "forage",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Daffodil"
+  },
+  {
+    "id": "leek",
+    "nameEn": "Leek",
+    "nameZh": "韭葱",
+    "basePrice": 60,
+    "category": "forage",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Leek"
+  },
+  {
+    "id": "dandelion",
+    "nameEn": "Dandelion",
+    "nameZh": "蒲公英",
+    "basePrice": 40,
+    "category": "forage",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Dandelion"
+  },
+  {
+    "id": "spring_onion",
+    "nameEn": "Spring Onion",
+    "nameZh": "大葱",
+    "basePrice": 8,
+    "category": "forage",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Spring_Onion"
+  },
+  {
+    "id": "cave_carrot",
+    "nameEn": "Cave Carrot",
+    "nameZh": "山洞萝卜",
+    "basePrice": 25,
+    "category": "forage",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Cave_Carrot"
+  },
+  {
+    "id": "hazelnut",
+    "nameEn": "Hazelnut",
+    "nameZh": "榛子",
+    "basePrice": 90,
+    "category": "forage",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Hazelnut"
+  },
+  {
+    "id": "winter_root",
+    "nameEn": "Winter Root",
+    "nameZh": "冬根",
+    "basePrice": 70,
+    "category": "forage",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Winter_Root"
+  },
+  {
+    "id": "snow_yam",
+    "nameEn": "Snow Yam",
+    "nameZh": "雪山药",
+    "basePrice": 100,
+    "category": "forage",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Snow_Yam"
+  },
+  {
+    "id": "ginger",
+    "nameEn": "Ginger",
+    "nameZh": "姜",
+    "basePrice": 60,
+    "category": "forage",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Ginger"
+  },
+  {
+    "id": "common_mushroom",
+    "nameEn": "Common Mushroom",
+    "nameZh": "普通蘑菇",
+    "basePrice": 40,
+    "category": "mushroom",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Common_Mushroom"
+  },
+  {
+    "id": "morel",
+    "nameEn": "Morel",
+    "nameZh": "羊肚菌",
+    "basePrice": 150,
+    "category": "mushroom",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Morel"
+  },
+  {
+    "id": "chanterelle",
+    "nameEn": "Chanterelle",
+    "nameZh": "鸡油菌",
+    "basePrice": 160,
+    "category": "mushroom",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Chanterelle"
+  },
+  {
+    "id": "purple_mushroom",
+    "nameEn": "Purple Mushroom",
+    "nameZh": "紫蘑菇",
+    "basePrice": 250,
+    "category": "mushroom",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Purple_Mushroom"
+  },
+  {
+    "id": "magma_cap",
+    "nameEn": "Magma Cap",
+    "nameZh": "熔岩菇",
+    "basePrice": 400,
+    "category": "mushroom",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Magma_Cap"
+  },
+  {
+    "id": "carp",
+    "nameEn": "Carp",
+    "nameZh": "鲤鱼",
+    "basePrice": 30,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Carp"
+  },
+  {
+    "id": "catfish",
+    "nameEn": "Catfish",
+    "nameZh": "鲶鱼",
+    "basePrice": 200,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Catfish"
+  },
+  {
+    "id": "chub",
+    "nameEn": "Chub",
+    "nameZh": "鲢鱼",
+    "basePrice": 50,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Chub"
+  },
+  {
+    "id": "bream",
+    "nameEn": "Bream",
+    "nameZh": "鲷鱼",
+    "basePrice": 45,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Bream"
+  },
+  {
+    "id": "dorado",
+    "nameEn": "Dorado",
+    "nameZh": "麻哈脂鲤",
+    "basePrice": 100,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Dorado"
+  },
+  {
+    "id": "pike",
+    "nameEn": "Pike",
+    "nameZh": "狗鱼",
+    "basePrice": 100,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Pike"
+  },
+  {
+    "id": "perch",
+    "nameEn": "Perch",
+    "nameZh": "河鲈",
+    "basePrice": 55,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Perch"
+  },
+  {
+    "id": "walleye",
+    "nameEn": "Walleye",
+    "nameZh": "大眼鱼",
+    "basePrice": 105,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Walleye"
+  },
+  {
+    "id": "rainbow_trout",
+    "nameEn": "Rainbow Trout",
+    "nameZh": "虹鳟鱼",
+    "basePrice": 65,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Rainbow_Trout"
+  },
+  {
+    "id": "tiger_trout",
+    "nameEn": "Tiger Trout",
+    "nameZh": "虎纹鳟鱼",
+    "basePrice": 150,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Tiger_Trout"
+  },
+  {
+    "id": "salmon",
+    "nameEn": "Salmon",
+    "nameZh": "鲑鱼",
+    "basePrice": 75,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Salmon"
+  },
+  {
+    "id": "smallmouth_bass",
+    "nameEn": "Smallmouth Bass",
+    "nameZh": "小嘴鲈鱼",
+    "basePrice": 50,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Smallmouth_Bass"
+  },
+  {
+    "id": "largemouth_bass",
+    "nameEn": "Largemouth Bass",
+    "nameZh": "大嘴鲈鱼",
+    "basePrice": 100,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Largemouth_Bass"
+  },
+  {
+    "id": "bullhead",
+    "nameEn": "Bullhead",
+    "nameZh": "大头鱼",
+    "basePrice": 75,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Bullhead"
+  },
+  {
+    "id": "sunfish",
+    "nameEn": "Sunfish",
+    "nameZh": "太阳鱼",
+    "basePrice": 30,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Sunfish"
+  },
+  {
+    "id": "shad",
+    "nameEn": "Shad",
+    "nameZh": "西鲱",
+    "basePrice": 60,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Shad"
+  },
+  {
+    "id": "lingcod",
+    "nameEn": "Lingcod",
+    "nameZh": "蛇齿单线鱼",
+    "basePrice": 120,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Lingcod"
+  },
+  {
+    "id": "sturgeon",
+    "nameEn": "Sturgeon",
+    "nameZh": "鲟鱼",
+    "basePrice": 200,
+    "category": "fish",
+    "tags": [
+      "caviar"
+    ],
+    "source": "https://stardewvalleywiki.com/Sturgeon"
+  },
+  {
+    "id": "midnight_carp",
+    "nameEn": "Midnight Carp",
+    "nameZh": "午夜鲤鱼",
+    "basePrice": 150,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Midnight_Carp"
+  },
+  {
+    "id": "slimejack",
+    "nameEn": "Slimejack",
+    "nameZh": "史莱姆鱼",
+    "basePrice": 100,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Slimejack"
+  },
+  {
+    "id": "woodskip",
+    "nameEn": "Woodskip",
+    "nameZh": "木跃鱼",
+    "basePrice": 75,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Woodskip"
+  },
+  {
+    "id": "void_salmon",
+    "nameEn": "Void Salmon",
+    "nameZh": "虚空鲑鱼",
+    "basePrice": 150,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Void_Salmon"
+  },
+  {
+    "id": "goby",
+    "nameEn": "Goby",
+    "nameZh": "虾虎鱼",
+    "basePrice": 150,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Goby"
+  },
+  {
+    "id": "anchovy",
+    "nameEn": "Anchovy",
+    "nameZh": "鳀鱼",
+    "basePrice": 30,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Anchovy"
+  },
+  {
+    "id": "sardine",
+    "nameEn": "Sardine",
+    "nameZh": "沙丁鱼",
+    "basePrice": 40,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Sardine"
+  },
+  {
+    "id": "herring",
+    "nameEn": "Herring",
+    "nameZh": "鲱鱼",
+    "basePrice": 30,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Herring"
+  },
+  {
+    "id": "tuna",
+    "nameEn": "Tuna",
+    "nameZh": "金枪鱼",
+    "basePrice": 100,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Tuna"
+  },
+  {
+    "id": "albacore",
+    "nameEn": "Albacore",
+    "nameZh": "青花鱼",
+    "basePrice": 75,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Albacore"
+  },
+  {
+    "id": "halibut",
+    "nameEn": "Halibut",
+    "nameZh": "大比目鱼",
+    "basePrice": 80,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Halibut"
+  },
+  {
+    "id": "red_snapper",
+    "nameEn": "Red Snapper",
+    "nameZh": "红鲷鱼",
+    "basePrice": 50,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Red_Snapper"
+  },
+  {
+    "id": "red_mullet",
+    "nameEn": "Red Mullet",
+    "nameZh": "红鲻鱼",
+    "basePrice": 75,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Red_Mullet"
+  },
+  {
+    "id": "tilapia",
+    "nameEn": "Tilapia",
+    "nameZh": "罗非鱼",
+    "basePrice": 75,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Tilapia"
+  },
+  {
+    "id": "flounder",
+    "nameEn": "Flounder",
+    "nameZh": "比目鱼",
+    "basePrice": 100,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Flounder"
+  },
+  {
+    "id": "sea_cucumber",
+    "nameEn": "Sea Cucumber",
+    "nameZh": "海参",
+    "basePrice": 75,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Sea_Cucumber"
+  },
+  {
+    "id": "super_cucumber",
+    "nameEn": "Super Cucumber",
+    "nameZh": "大海参",
+    "basePrice": 250,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Super_Cucumber"
+  },
+  {
+    "id": "eel",
+    "nameEn": "Eel",
+    "nameZh": "鳗鱼",
+    "basePrice": 85,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Eel"
+  },
+  {
+    "id": "octopus",
+    "nameEn": "Octopus",
+    "nameZh": "章鱼",
+    "basePrice": 150,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Octopus"
+  },
+  {
+    "id": "squid",
+    "nameEn": "Squid",
+    "nameZh": "鱿鱼",
+    "basePrice": 80,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Squid"
+  },
+  {
+    "id": "pufferfish",
+    "nameEn": "Pufferfish",
+    "nameZh": "河豚",
+    "basePrice": 200,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Pufferfish"
+  },
+  {
+    "id": "midnight_squid",
+    "nameEn": "Midnight Squid",
+    "nameZh": "午夜鱿鱼",
+    "basePrice": 100,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Midnight_Squid"
+  },
+  {
+    "id": "spook_fish",
+    "nameEn": "Spook Fish",
+    "nameZh": "幽灵鱼",
+    "basePrice": 220,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Spook_Fish"
+  },
+  {
+    "id": "blobfish",
+    "nameEn": "Blobfish",
+    "nameZh": "水滴鱼",
+    "basePrice": 500,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Blobfish"
+  },
+  {
+    "id": "ghostfish",
+    "nameEn": "Ghostfish",
+    "nameZh": "鬼鱼",
+    "basePrice": 45,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Ghostfish"
+  },
+  {
+    "id": "stonefish",
+    "nameEn": "Stonefish",
+    "nameZh": "石鱼",
+    "basePrice": 300,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Stonefish"
+  },
+  {
+    "id": "ice_pip",
+    "nameEn": "Ice Pip",
+    "nameZh": "冰柱鱼",
+    "basePrice": 500,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Ice_Pip"
+  },
+  {
+    "id": "lava_eel",
+    "nameEn": "Lava Eel",
+    "nameZh": "岩浆鳗鱼",
+    "basePrice": 700,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Lava_Eel"
+  },
+  {
+    "id": "sandfish",
+    "nameEn": "Sandfish",
+    "nameZh": "沙鱼",
+    "basePrice": 75,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Sandfish"
+  },
+  {
+    "id": "scorpion_carp",
+    "nameEn": "Scorpion Carp",
+    "nameZh": "蝎鲤鱼",
+    "basePrice": 150,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Scorpion_Carp"
+  },
+  {
+    "id": "lionfish",
+    "nameEn": "Lionfish",
+    "nameZh": "狮子鱼",
+    "basePrice": 100,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Lionfish"
+  },
+  {
+    "id": "blue_discus",
+    "nameEn": "Blue Discus",
+    "nameZh": "蓝铁饼鱼",
+    "basePrice": 120,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Blue_Discus"
+  },
+  {
+    "id": "stingray",
+    "nameEn": "Stingray",
+    "nameZh": "黄貂鱼",
+    "basePrice": 180,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Stingray"
+  },
+  {
+    "id": "crimsonfish",
+    "nameEn": "Crimsonfish",
+    "nameZh": "绯红鱼",
+    "basePrice": 1500,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Crimsonfish"
+  },
+  {
+    "id": "angler",
+    "nameEn": "Angler",
+    "nameZh": "鮟鱇鱼",
+    "basePrice": 900,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Angler"
+  },
+  {
+    "id": "legend",
+    "nameEn": "Legend",
+    "nameZh": "传说之鱼",
+    "basePrice": 5000,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Legend"
+  },
+  {
+    "id": "glacierfish",
+    "nameEn": "Glacierfish",
+    "nameZh": "冰川鱼",
+    "basePrice": 1000,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Glacierfish"
+  },
+  {
+    "id": "mutant_carp",
+    "nameEn": "Mutant Carp",
+    "nameZh": "变种鲤鱼",
+    "basePrice": 1000,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Mutant_Carp"
+  },
+  {
+    "id": "roe",
+    "nameEn": "Roe",
+    "nameZh": "鱼籽",
+    "basePrice": 30,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Roe"
+  },
+  {
+    "id": "sturgeon_roe",
+    "nameEn": "Sturgeon Roe",
+    "nameZh": "鱼籽酱",
+    "basePrice": 100,
+    "category": "roe",
+    "tags": [
+      "sturgeon_roe"
+    ],
+    "source": "https://stardewvalleywiki.com/Sturgeon_Roe"
+  },
+  {
+    "id": "milk",
+    "nameEn": "Milk",
+    "nameZh": "牛奶",
+    "basePrice": 125,
+    "category": "milk",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Milk"
+  },
+  {
+    "id": "large_milk",
+    "nameEn": "Large Milk",
+    "nameZh": "大壶牛奶",
+    "basePrice": 190,
+    "category": "milk",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Large_Milk"
+  },
+  {
+    "id": "goat_milk",
+    "nameEn": "Goat Milk",
+    "nameZh": "羊奶",
+    "basePrice": 225,
+    "category": "milk",
+    "tags": [
+      "goat_milk"
+    ],
+    "source": "https://stardewvalleywiki.com/Goat_Milk"
+  },
+  {
+    "id": "large_goat_milk",
+    "nameEn": "Large Goat Milk",
+    "nameZh": "大瓶羊奶",
+    "basePrice": 345,
+    "category": "milk",
+    "tags": [
+      "goat_milk"
+    ],
+    "source": "https://stardewvalleywiki.com/Large_Goat_Milk"
+  },
+  {
+    "id": "egg",
+    "nameEn": "Egg",
+    "nameZh": "蛋",
+    "basePrice": 50,
+    "category": "egg",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Egg"
+  },
+  {
+    "id": "large_egg",
+    "nameEn": "Large Egg",
+    "nameZh": "大鸡蛋",
+    "basePrice": 95,
+    "category": "egg",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Large_Egg"
+  },
+  {
+    "id": "duck_egg",
+    "nameEn": "Duck Egg",
+    "nameZh": "鸭蛋",
+    "basePrice": 95,
+    "category": "egg",
+    "tags": [
+      "duck_egg"
+    ],
+    "source": "https://stardewvalleywiki.com/Duck_Egg"
+  },
+  {
+    "id": "void_egg",
+    "nameEn": "Void Egg",
+    "nameZh": "虚空蛋",
+    "basePrice": 65,
+    "category": "egg",
+    "tags": [
+      "void_egg"
+    ],
+    "source": "https://stardewvalleywiki.com/Void_Egg"
+  },
+  {
+    "id": "dinosaur_egg",
+    "nameEn": "Dinosaur Egg",
+    "nameZh": "恐龙蛋",
+    "basePrice": 350,
+    "category": "egg",
+    "tags": [
+      "dino_egg"
+    ],
+    "source": "https://stardewvalleywiki.com/Dinosaur_Egg"
+  },
+  {
+    "id": "wool",
+    "nameEn": "Wool",
+    "nameZh": "动物毛",
+    "basePrice": 340,
+    "category": "wool",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Wool"
+  },
+  {
+    "id": "truffle",
+    "nameEn": "Truffle",
+    "nameZh": "松露",
+    "basePrice": 625,
+    "category": "other",
+    "tags": [
+      "truffle"
+    ],
+    "source": "https://stardewvalleywiki.com/Truffle"
+  },
+  {
+    "id": "honey",
+    "nameEn": "Honey",
+    "nameZh": "蜂蜜",
+    "basePrice": 100,
+    "category": "other",
+    "tags": [
+      "honey"
+    ],
+    "source": "https://stardewvalleywiki.com/Honey"
+  }
+]
