@@ -50,6 +50,14 @@ const RAW: Machine = {
         item.category === 'flower' ||
         (item.category === 'fruit' && !has(item, 'tree'))) &&
       true,
+    // Rancher: +20% to raw animal products (milk, eggs, wool, truffle). Processed
+    // animal goods (cheese, mayo, cloth, truffle oil) are Artisan, not Rancher.
+    rancherEligible:
+      item.category === 'milk' ||
+      item.category === 'egg' ||
+      item.category === 'wool' ||
+      has(item, 'truffle'),
+    fishEligible: item.category === 'fish', // Fisher/Angler boost raw fish
     qualitySensitive: true,
     days: 0,
   }),
@@ -225,7 +233,9 @@ const SMOKER: Machine = {
           ...flavored(item, (n) => `Smoked ${n}`, (n) => `熏${n}`),
           inputCount: 1, outputCount: 1,
           baseValue: item.basePrice * 2,
-          artisanGood: false, tillerEligible: false, qualitySensitive: false,
+          // Smoked Fish = 2× fish price, retaining quality; benefits from Fisher/Angler AND
+          // Artisan (wiki). So it's quality-sensitive, fish-eligible, and an artisan good.
+          artisanGood: true, tillerEligible: false, qualitySensitive: true, fishEligible: true,
           days: days(50),
           extraInputs: ['coal'],
         }
@@ -273,6 +283,9 @@ const MAYO: Machine = {
     if (has(item, 'duck_egg')) return mk('duck_mayo', 'Duck Mayonnaise', '鸭蛋黄酱', 375);
     if (has(item, 'void_egg')) return mk('void_mayo', 'Void Mayonnaise', '虚空蛋黄酱', 275);
     if (has(item, 'dino_egg')) return mk('dino_mayo', 'Dinosaur Mayonnaise', '恐龙蛋黄酱', 800);
+    // A Large Egg yields GOLD-quality Mayonnaise (190 × 1.5 = 285), per wiki. Regular eggs
+    // always make normal-quality mayo (egg star quality does not carry through).
+    if (item.id === 'large_egg') return mk('mayo', 'Mayonnaise', '蛋黄酱', 285);
     return mk('mayo', 'Mayonnaise', '蛋黄酱', 190);
   },
 };
@@ -287,13 +300,16 @@ const CHEESE: Machine = {
   transform: (item) => {
     if (item.category !== 'milk') return null;
     const goat = has(item, 'goat_milk');
+    // Large Milk / Large Goat Milk yield GOLD-quality cheese (×1.5), per wiki.
+    const large = item.id.startsWith('large_');
+    const baseValue = goat ? (large ? 600 : 400) : large ? 345 : 230;
     return {
       machineId: 'cheese',
       outputId: goat ? 'goat_cheese' : 'cheese',
       outputNameEn: goat ? 'Goat Cheese' : 'Cheese',
       outputNameZh: goat ? '山羊奶酪' : '奶酪',
       inputCount: 1, outputCount: 1,
-      baseValue: goat ? 400 : 230,
+      baseValue,
       artisanGood: true, tillerEligible: false, qualitySensitive: false, days: days(200),
     };
   },

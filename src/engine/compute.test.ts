@@ -1,9 +1,12 @@
 // Lightweight engine sanity checks. Run with: npm test  (tsx src/engine/compute.test.ts)
 import assert from 'node:assert/strict';
 import { Item, Settings } from './types';
-import { computeRoutes } from './compute';
+import { computeRoutes, profRelevance } from './compute';
 
-const base: Settings = { artisan: false, tiller: false, quality: 'normal', rankBy: 'total' };
+const base: Settings = {
+  level5: 'none', level10: 'none', fishingLevel5: 'none', fishingLevel10: 'none',
+  quality: 'normal', rankBy: 'total',
+};
 
 const starfruit: Item = {
   id: 'starfruit', nameEn: 'Starfruit', nameZh: '星之果实',
@@ -20,6 +23,42 @@ const sturgeon: Item = {
 const bream: Item = {
   id: 'bream', nameEn: 'Bream', nameZh: '鲷鱼',
   basePrice: 45, category: 'fish', tags: [],
+};
+const milk: Item = {
+  id: 'milk', nameEn: 'Milk', nameZh: '牛奶',
+  basePrice: 125, category: 'milk', tags: [],
+};
+const egg: Item = {
+  id: 'egg', nameEn: 'Egg', nameZh: '鸡蛋',
+  basePrice: 50, category: 'egg', tags: [],
+};
+const largeEgg: Item = {
+  id: 'large_egg', nameEn: 'Large Egg', nameZh: '大鸡蛋',
+  basePrice: 95, category: 'egg', tags: [],
+};
+const duckEgg: Item = {
+  id: 'duck_egg', nameEn: 'Duck Egg', nameZh: '鸭蛋',
+  basePrice: 95, category: 'egg', tags: ['duck_egg'],
+};
+const largeMilk: Item = {
+  id: 'large_milk', nameEn: 'Large Milk', nameZh: '大牛奶',
+  basePrice: 190, category: 'milk', tags: [],
+};
+const largeGoatMilk: Item = {
+  id: 'large_goat_milk', nameEn: 'Large Goat Milk', nameZh: '大羊奶',
+  basePrice: 345, category: 'milk', tags: ['goat_milk'],
+};
+const hops: Item = {
+  id: 'hops', nameEn: 'Hops', nameZh: '啤酒花',
+  basePrice: 25, category: 'vegetable', tags: ['hops'],
+};
+const plainRoe: Item = {
+  id: 'roe', nameEn: 'Roe', nameZh: '鱼籽',
+  basePrice: 30, category: 'roe', tags: [],
+};
+const sturgeonRoe: Item = {
+  id: 'sturgeon_roe', nameEn: 'Sturgeon Roe', nameZh: '鲟鱼籽',
+  basePrice: 100, category: 'roe', tags: ['sturgeon_roe'],
 };
 
 let passed = 0;
@@ -38,7 +77,8 @@ check('Starfruit Wine = 3× base = 2250 (no professions)', () => {
   assert.equal(route(starfruit, base, 'keg').value, 2250);
 });
 check('Artisan +40% → Starfruit Wine = 3150', () => {
-  assert.equal(route(starfruit, { ...base, artisan: true }, 'keg').value, 3150);
+  // Artisan lives in the Tiller branch (Lvl 5 Tiller → Lvl 10 Artisan).
+  assert.equal(route(starfruit, { ...base, level5: 'tiller', level10: 'artisan' }, 'keg').value, 3150);
 });
 check('Starfruit Jelly = 2×750+50 = 1550', () => {
   assert.equal(route(starfruit, base, 'jar').value, 1550);
@@ -51,7 +91,7 @@ check('Starfruit Dried Fruit batch = 7.5×750+25 = 5650 (5 in)', () => {
 });
 check('Starfruit raw = base = 750, Tiller +10% → 825', () => {
   assert.equal(route(starfruit, base, 'raw').value, 750);
-  assert.equal(route(starfruit, { ...base, tiller: true }, 'raw').value, 825);
+  assert.equal(route(starfruit, { ...base, level5: 'tiller' }, 'raw').value, 825);
 });
 check('Quality affects raw but NOT keg (kegs normalize quality)', () => {
   const irid: Settings = { ...base, quality: 'iridium' };
@@ -89,6 +129,83 @@ check('Sturgeon (200) → Roe 130, Smoked 400, and roe→Caviar 500 (not Aged Ro
   assert.equal(route(sturgeon, base, 'smoker').value, 400);
   assert.equal(route(sturgeon, base, 'jar').value, 500); // Caviar, fixed
   assert.equal(route(sturgeon, base, 'jar').outputNameEn, 'Caviar');
+});
+
+check('Rancher +20% → raw Milk 125 → 150; Cheese (artisan good) unaffected', () => {
+  const ranch: Settings = { ...base, level5: 'rancher' };
+  assert.equal(route(milk, ranch, 'raw').value, 150); // 125 × 1.2
+  assert.equal(route(milk, ranch, 'cheese').value, 230); // processed → Artisan, not Rancher
+});
+check('Whole-day model: Wine 6.25 days → effectiveDays 7, gold/day = value ÷ 7', () => {
+  const wine = route(starfruit, base, 'keg');
+  assert.equal(wine.effectiveDays, 7);
+  assert.equal(wine.goldPerDay, 2250 / 7);
+});
+check('Whole-day model: Dehydrator (exactly 1 day) stays effectiveDays 1', () => {
+  assert.equal(route(starfruit, base, 'dehydrator').effectiveDays, 1);
+});
+
+check('Large Egg → GOLD-quality Mayo = 285 (regular egg stays 190)', () => {
+  assert.equal(route(largeEgg, base, 'mayo').value, 285); // 190 × 1.5
+  assert.equal(route(egg, base, 'mayo').value, 190);
+});
+check('Large Milk → gold Cheese 345; Large Goat Milk → gold Goat Cheese 600', () => {
+  assert.equal(route(largeMilk, base, 'cheese').value, 345); // 230 × 1.5
+  assert.equal(route(largeGoatMilk, base, 'cheese').value, 600); // 400 × 1.5
+  assert.equal(route(milk, base, 'cheese').value, 230); // regular milk unchanged
+});
+check('Rancher boosts RAW Duck Egg (+20%) but NOT Duck Mayo (artisan good)', () => {
+  const ranch: Settings = { ...base, level5: 'rancher' };
+  assert.equal(route(duckEgg, ranch, 'raw').value, 114); // 95 × 1.2
+  assert.equal(route(duckEgg, ranch, 'mayo').value, 375); // artisan good → no Rancher bonus
+});
+check('gold/day: instant Sell raw outranks a slower route that nets less (not buried last)', () => {
+  // Iridium + Rancher Milk: raw 300 beats Cheese 230 — raw must rank FIRST, not last.
+  const s: Settings = {
+    level5: 'rancher', level10: 'none', fishingLevel5: 'none', fishingLevel10: 'none',
+    quality: 'iridium', rankBy: 'perDay',
+  };
+  const ranked = computeRoutes(milk, s);
+  assert.equal(route(milk, s, 'raw').value, 300); // 125 × 2 × 1.2
+  assert.equal(ranked[0].machineId, 'raw');
+});
+
+check('Fish Smoker deducts 1 coal (15g): Bream smoked sells 90g, nets 75g', () => {
+  const r = route(bream, base, 'smoker');
+  assert.equal(r.value, 90); // gross sell value of Smoked Fish (unchanged, matches wiki)
+  assert.equal(r.extraCost, 15); // 1 coal
+  assert.equal(r.perInputValue, 75); // 90 − 15 coal = net
+  assert.equal(route(starfruit, base, 'keg').extraCost, 0); // no extra cost on other routes
+});
+
+check('Fisher +25% / Angler +50% on raw fish; do NOT stack', () => {
+  const fisher: Settings = { ...base, fishingLevel5: 'fisher' };
+  const angler: Settings = { ...base, fishingLevel5: 'fisher', fishingLevel10: 'angler' };
+  assert.equal(route(bream, base, 'raw').value, 45);
+  assert.equal(route(bream, fisher, 'raw').value, 56); // 45 × 1.25 = 56.25 → 56
+  assert.equal(route(bream, angler, 'raw').value, 68); // 45 × 1.5 = 67.5 → 68 (NOT ×1.25×1.5)
+});
+check('Smoked Fish gets fish + Artisan bonuses (stack) and is quality-sensitive', () => {
+  // Angler (fishing) + Artisan (farming) both apply to smoked fish.
+  const both: Settings = { ...base, level5: 'tiller', level10: 'artisan', fishingLevel5: 'fisher', fishingLevel10: 'angler' };
+  // 45×2 = 90 base; ×1.5 Angler ×1.4 Artisan = 189; value is gross, perInputValue nets coal.
+  assert.equal(route(bream, both, 'smoker').value, 189);
+  assert.equal(route(bream, both, 'smoker').perInputValue, 174); // 189 − 15 coal
+  // Iridium fish → quality retained: 90 × 2 = 180 (base settings + iridium, no professions)
+  assert.equal(route(bream, { ...base, quality: 'iridium' }, 'smoker').value, 180);
+});
+check('Fishing professions do NOT touch Roe (no category)', () => {
+  const angler: Settings = { ...base, fishingLevel5: 'fisher', fishingLevel10: 'angler' };
+  assert.equal(route(bream, angler, 'pond').value, 52); // Roe unchanged (30 + floor(45/2))
+});
+
+check('profRelevance: which profession trees apply per item', () => {
+  assert.deepEqual(profRelevance(parsnip), { farming: true, fishing: false }); // crop
+  assert.deepEqual(profRelevance(hops), { farming: true, fishing: false }); // crop → Pale Ale, NO fishing
+  assert.deepEqual(profRelevance(milk), { farming: true, fishing: false }); // animal product
+  assert.deepEqual(profRelevance(bream), { farming: true, fishing: true }); // fish: +Artisan on smoked
+  assert.deepEqual(profRelevance(plainRoe), { farming: false, fishing: false }); // nothing affects roe
+  assert.deepEqual(profRelevance(sturgeonRoe), { farming: true, fishing: false }); // Caviar is artisan
 });
 
 console.log(`\n${passed} checks passed ✅`);

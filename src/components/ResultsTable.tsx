@@ -32,12 +32,24 @@ export function ResultsTable({ item, settings }: { item: Item; settings: Setting
           </div>
         </div>
 
-        {/* Column headers */}
+        {/* Column headers — the active sort metric is highlighted with a ▼. */}
         <div className="grid grid-cols-[1.3fr_1.6fr_0.9fr_0.9fr] gap-2 px-2 pb-1 text-ink-soft text-sm border-b-2 border-wood/40">
           <span>{t.colRoute}</span>
           <span>{t.colOutput}</span>
-          <span className="text-right">{t.colValue}</span>
-          <span className="text-right">{t.colPerDay}</span>
+          <span
+            className={`text-right ${settings.rankBy === 'total' ? 'font-bold text-leaf-dark' : ''}`}
+            title={t.explainTotal}
+          >
+            {t.colValue}
+            {settings.rankBy === 'total' && ' ▼'}
+          </span>
+          <span
+            className={`text-right ${settings.rankBy === 'perDay' ? 'font-bold text-leaf-dark' : ''}`}
+            title={t.explainPerDay}
+          >
+            {t.colPerDay}
+            {settings.rankBy === 'perDay' && ' ▼'}
+          </span>
         </div>
 
         {/* Rows */}
@@ -66,11 +78,20 @@ export function ResultsTable({ item, settings }: { item: Item; settings: Setting
                 </span>
 
                 <span className="text-right">
-                  {/* Headline = per-input value (the comparable number used for ranking). */}
-                  <span className="sv-coin justify-end">{g(r.perInputValue)}g</span>
+                  {/* Emphasize this metric only when it's the active sort; dim it otherwise. */}
+                  <span
+                    className={settings.rankBy === 'total' ? 'sv-coin justify-end' : 'text-ink-soft text-sm'}
+                  >
+                    {g(r.perInputValue)}g
+                  </span>
                   {batched && (
                     <div className="text-ink-soft text-xs">
                       ×{r.inputCount} → {g(r.value)}g
+                    </div>
+                  )}
+                  {r.extraCost > 0 && (
+                    <div className="text-ink-soft text-xs">
+                      {g(r.value / r.inputCount)}g − {g(r.extraCost)}g {t.coal}
                     </div>
                   )}
                 </span>
@@ -80,14 +101,27 @@ export function ResultsTable({ item, settings }: { item: Item; settings: Setting
                     <span className="text-ink-soft text-sm">{t.instant}</span>
                   ) : (
                     <>
-                      {g(r.goldPerDay)}
-                      <div className="text-ink-soft text-xs">{t.days(round1(r.days))}</div>
+                      <span
+                        className={settings.rankBy === 'perDay' ? 'sv-coin justify-end' : 'text-ink-soft text-sm'}
+                      >
+                        {g(r.goldPerDay)}
+                      </span>
+                      {/* Whole "collect next morning" days; tooltip shows the raw game time. */}
+                      <div className="text-ink-soft text-xs" title={t.actualTime(round1(r.days))}>
+                        {t.days(r.effectiveDays)}
+                      </div>
                     </>
                   )}
                 </span>
               </div>
             );
           })}
+        </div>
+
+        {/* Metric legend — what the two ranking numbers mean (gold/day intuition). */}
+        <div className="mt-3 pt-2 border-t-2 border-wood/40 text-ink-soft text-xs space-y-1">
+          <div>{t.explainTotal}</div>
+          <div>{t.explainPerDay}</div>
         </div>
       </div>
     </div>

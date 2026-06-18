@@ -44,11 +44,21 @@ src/
 - **Fish Smoker:** fish→Smoked Fish `×2`.
 - **+ Sell raw** baseline.
 
-## Modifiers (each a Settings toggle)
-- Artisan +40% (artisan goods only). Tiller +10% (raw crops).
+## Modifiers (Settings)
+- **Professions = the in-game Farming skill tree**, not free toggles. `Settings.level5`
+  (`'none'|'rancher'|'tiller'`) is one mutually-exclusive Lvl-5 pick; `Settings.level10`
+  (`'none'|'artisan'|'agriculturist'|'coopmaster'|'shepherd'`) branches off it. Only three affect
+  sell value: **Tiller +10%** (raw crops & flowers), **Rancher +20%** (raw animal products —
+  milk/egg/wool/truffle; *processed* animal goods are Artisan, not Rancher), **Artisan +40%**
+  (artisan goods). Agriculturist/Coopmaster/Shepherd are growth/production-speed only → no price
+  effect (shown in the UI, labeled informational). Each route carries `artisanGood`/`tillerEligible`/
+  `rancherEligible` flags; `priceRoute` derives the active professions from the tree.
 - Input quality (normal/silver×1.25/gold×1.5/iridium×2) → raw sale & cask only; kegs/jars/
   dehydrator normalize to base quality.
-- Ranking metric: total gold vs gold/day (value ÷ processing days, account for batch size).
+- Ranking metric: total gold (per-input value, fair across batch sizes) vs gold/day.
+- **gold/day uses whole-day occupancy:** `effectiveDays = ⌈rawMinutes / 1600⌉` (machines are
+  emptied/refilled each morning, so a job ties one up for whole "collect next morning" days —
+  Wine 6.25→7d, sub-day machines →1d, Dehydrator stays 1d). gold/day = per-input value ÷ effectiveDays.
 
 ## Run
 - Dev: `npm install && npm run dev`

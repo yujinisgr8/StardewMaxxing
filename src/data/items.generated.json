@@ -144,6 +144,17 @@
     "source": "https://stardewvalleywiki.com/Wild_Plum"
   },
   {
+    "id": "summer_squash",
+    "nameEn": "Summer Squash",
+    "nameZh": "夏南瓜",
+    "basePrice": 45,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Summer_Squash"
+  },
+  {
     "id": "blackberry",
     "nameEn": "Blackberry",
     "nameZh": "黑莓",

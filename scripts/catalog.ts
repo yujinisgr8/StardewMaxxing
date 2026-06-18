@@ -57,6 +57,7 @@ export const CATALOG: CatalogEntry[] = [
 
   // ---- Vegetables (→ Juice / Pickles) ----
   e('Parsnip', 'vegetable'),
+  e('Summer Squash', 'vegetable'),
   e('Green Bean', 'vegetable'),
   e('Cauliflower', 'vegetable'),
   e('Potato', 'vegetable'),
