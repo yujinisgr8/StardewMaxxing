@@ -11,7 +11,8 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "build:data": "tsx scripts/build-data.ts",
-    "test": "tsx src/engine/compute.test.ts",
+    "test": "tsx src/engine/compute.test.ts && tsx src/engine/routes.smoke.test.ts && tsx src/data/items.seed.test.ts",
+    "verify": "tsc --noEmit && npm test",
     "package": "npm run build && electron-builder"
   },
   "dependencies": {},

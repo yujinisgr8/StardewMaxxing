@@ -5,10 +5,14 @@ import { SearchBar } from './components/SearchBar';
 import { SettingsPanel } from './components/SettingsPanel';
 import { ResultsTable } from './components/ResultsTable';
 import { LanguageToggle } from './components/LanguageToggle';
+import { ErrorBoundary } from './components/ErrorBoundary';
+import { profRelevance } from './engine/compute';
 
 const DEFAULT_SETTINGS: Settings = {
-  artisan: false,
-  tiller: false,
+  level5: 'none',
+  level10: 'none',
+  fishingLevel5: 'none',
+  fishingLevel10: 'none',
   quality: 'normal',
   rankBy: 'total',
 };
@@ -38,7 +42,12 @@ function Shell() {
 
       {/* Body */}
       <div className="grid grid-cols-1 md:grid-cols-[260px_1fr] gap-5 items-start">
-        <SettingsPanel settings={settings} onChange={setSettings} />
+        <SettingsPanel
+          settings={settings}
+          onChange={setSettings}
+          // Show only the profession tree(s) that can change this item's routes.
+          relevance={item ? profRelevance(item) : { farming: true, fishing: true }}
+        />
         {item ? (
           <ResultsTable item={item} settings={settings} />
         ) : (
@@ -59,8 +68,10 @@ function Shell() {
 
 export default function App() {
   return (
-    <I18nProvider>
-      <Shell />
-    </I18nProvider>
+    <ErrorBoundary>
+      <I18nProvider>
+        <Shell />
+      </I18nProvider>
+    </ErrorBoundary>
   );
 }

@@ -5,7 +5,10 @@ import { ITEMS } from './items';
 import { computeRoutes } from '../engine/compute';
 import { Settings } from '../engine/types';
 
-const s: Settings = { artisan: true, tiller: true, quality: 'gold', rankBy: 'total' };
+const s: Settings = {
+  level5: 'tiller', level10: 'artisan', fishingLevel5: 'fisher', fishingLevel10: 'angler',
+  quality: 'gold', rankBy: 'total',
+};
 
 console.log(`seed dataset: ${ITEMS.length} items`);
 let issues = 0;
