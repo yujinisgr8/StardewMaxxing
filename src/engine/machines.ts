@@ -8,10 +8,6 @@ const days = (mins: number) => mins / MINUTES_PER_DAY;
 const has = (item: Item, tag: string) => item.tags.includes(tag);
 const isEdible = (item: Item) => !has(item, 'inedible');
 
-// Roe a fish produces in a Fish Pond (wiki /Roe): 30 + floor(Base Fish Price / 2).
-const roeValue = (item: Item) => 30 + Math.floor(item.basePrice / 2);
-// Sturgeon is the only fish whose roe becomes Caviar (500g) instead of Aged Roe.
-const makesCaviar = (item: Item) => has(item, 'caviar') || item.id === 'sturgeon';
 
 export interface Machine {
   id: string;
@@ -137,24 +133,10 @@ const JAR: Machine = {
       ...r,
     }) as RouteResult;
 
+    // Sturgeon Roe → Caviar; all other roe → Aged Roe. (Roe is its own searchable item now,
+    // derived per-fish in data/items.ts — fish themselves no longer carry roe routes.)
     if (has(item, 'sturgeon_roe'))
       return base({ outputId: 'caviar', outputNameEn: 'Caviar', outputNameZh: '鱼籽酱', baseValue: 500 });
-    // A fish's roe (from a Fish Pond) → Aged Roe, or Caviar for Sturgeon.
-    if (item.category === 'fish') {
-      if (makesCaviar(item))
-        return base({
-          outputId: 'caviar', outputNameEn: 'Caviar', outputNameZh: '鱼籽酱', baseValue: 500,
-          note: 'Sturgeon Roe → Caviar (needs a Fish Pond for roe)',
-        });
-      return base({
-        outputId: `aged_${item.id}_roe`,
-        outputNameEn: `Aged ${item.nameEn} Roe`,
-        outputNameZh: `腌${item.nameZh}鱼籽`,
-        baseValue: roeValue(item) * 2,
-        artisanGood: false,
-        note: 'Roe (from a Fish Pond) → Aged Roe',
-      });
-    }
     if (item.category === 'roe')
       return base({
         outputId: `aged_${item.id}`,
@@ -238,30 +220,6 @@ const SMOKER: Machine = {
           artisanGood: true, tillerEligible: false, qualitySensitive: true, fishEligible: true,
           days: days(50),
           extraInputs: ['coal'],
-        }
-      : null,
-};
-
-// ---------------------------------------------------------------------------
-// Fish Pond — a stocked fish passively produces Roe (30 + floor(price/2)).
-// Modeled as instant/passive (the fish isn't consumed); shown for reference.
-// ---------------------------------------------------------------------------
-const POND: Machine = {
-  id: 'pond',
-  nameEn: 'Fish Pond → Roe',
-  nameZh: '鱼塘 → 鱼籽',
-  transform: (item) =>
-    item.category === 'fish'
-      ? {
-          machineId: 'pond',
-          outputId: makesCaviar(item) ? 'sturgeon_roe' : `${item.id}_roe`,
-          outputNameEn: makesCaviar(item) ? 'Sturgeon Roe' : `${item.nameEn} Roe`,
-          outputNameZh: makesCaviar(item) ? '鲟鱼籽' : `${item.nameZh}鱼籽`,
-          inputCount: 1, outputCount: 1,
-          baseValue: roeValue(item),
-          artisanGood: false, tillerEligible: false, qualitySensitive: false,
-          days: 0, // passive Fish Pond income; not consumed like keg/jar inputs
-          note: 'Passive: a Fish Pond keeps producing roe without consuming the fish',
         }
       : null,
 };
@@ -399,5 +357,5 @@ const CASK: Machine = {
 };
 
 export const MACHINES: Machine[] = [
-  RAW, KEG, JAR, DEHYDRATOR, SMOKER, POND, MAYO, CHEESE, OIL, LOOM, CASK,
+  RAW, KEG, JAR, DEHYDRATOR, SMOKER, MAYO, CHEESE, OIL, LOOM, CASK,
 ];

@@ -126,6 +126,12 @@ so the window can't get stuck hidden. Diagnose packaged-render issues with
       sorted column (fixes "Dehydrator 125 looks best but Wine 240 is higher" — that was Gold/day mode:
       Dehydrator 1d beats Wine 7d). Added **Summer Squash** (45g vegetable, zh 夏南瓜) to catalog +
       generated.json → 141 items.
+- [x] **P10** Instant-price display + fish/roe split — (a) "Sell raw" now shows its price in the
+      Gold/day column with a small "instant" tag (so its rank is legible). (b) **Roe is its own
+      searchable item, derived per-fish** in `data/items.ts` (`30 + ⌊fish price ÷ 2⌋`; Sturgeon →
+      Caviar). Removed the Fish Pond machine + the fish→roe Jar branch + the standalone generic roe
+      items, so a **fish's table is just Sell raw + Smoker** and roe stands alone (Bream Roe 52 → Aged
+      104; Sturgeon Roe 130 → Caviar 500). 195 items, 24 tests green.
 
 ## Verification (run at T9, spot-check earlier)
 1. `npm run dev` → Electron window with HMR.

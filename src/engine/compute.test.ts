@@ -119,16 +119,19 @@ check('Low-value veg: Pickles (120) beat Juice (79) — Parsnip', () => {
   assert.equal(computeRoutes(parsnip, base)[0].machineId, 'jar');
 });
 
-check('Fish: Bream (45) → Roe 52, Aged Roe 104, Smoked Fish 90', () => {
-  assert.equal(route(bream, base, 'pond').value, 52); // 30 + floor(45/2)=30+22
-  assert.equal(route(bream, base, 'jar').value, 104); // 2 × 52
+check('Fish itself has NO roe routes — only Sell raw + Smoker (roe is its own item)', () => {
   assert.equal(route(bream, base, 'smoker').value, 90); // 2 × 45
-});
-check('Sturgeon (200) → Roe 130, Smoked 400, and roe→Caviar 500 (not Aged Roe)', () => {
-  assert.equal(route(sturgeon, base, 'pond').value, 130); // 30 + 100
+  const ids = computeRoutes(bream, base).map((r) => r.machineId);
+  assert.deepEqual([...ids].sort(), ['raw', 'smoker']);
   assert.equal(route(sturgeon, base, 'smoker').value, 400);
-  assert.equal(route(sturgeon, base, 'jar').value, 500); // Caviar, fixed
-  assert.equal(route(sturgeon, base, 'jar').outputNameEn, 'Caviar');
+});
+check('Roe items: Bream Roe (52) → Aged Roe 104; Sturgeon Roe → Caviar 500', () => {
+  const breamRoe: Item = {
+    id: 'bream_roe', nameEn: 'Bream Roe', nameZh: '鲷鱼鱼籽', basePrice: 52, category: 'roe', tags: [],
+  };
+  assert.equal(route(breamRoe, base, 'jar').value, 104); // Aged Roe = 2 × 52
+  assert.equal(route(sturgeonRoe, base, 'jar').value, 500); // Caviar, fixed
+  assert.equal(route(sturgeonRoe, base, 'jar').outputNameEn, 'Caviar');
 });
 
 check('Rancher +20% → raw Milk 125 → 150; Cheese (artisan good) unaffected', () => {
@@ -196,7 +199,8 @@ check('Smoked Fish gets fish + Artisan bonuses (stack) and is quality-sensitive'
 });
 check('Fishing professions do NOT touch Roe (no category)', () => {
   const angler: Settings = { ...base, fishingLevel5: 'fisher', fishingLevel10: 'angler' };
-  assert.equal(route(bream, angler, 'pond').value, 52); // Roe unchanged (30 + floor(45/2))
+  assert.equal(route(plainRoe, angler, 'raw').value, 30); // raw roe unchanged by Angler
+  assert.equal(route(plainRoe, angler, 'jar').value, 60); // Aged Roe = 2 × 30, no fish bonus
 });
 
 check('profRelevance: which profession trees apply per item', () => {

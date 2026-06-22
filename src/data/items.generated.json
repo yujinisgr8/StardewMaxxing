@@ -155,6 +155,17 @@
     "source": "https://stardewvalleywiki.com/Summer_Squash"
   },
   {
+    "id": "broccoli",
+    "nameEn": "Broccoli",
+    "nameZh": "西蓝花",
+    "basePrice": 70,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Broccoli"
+  },
+  {
     "id": "blackberry",
     "nameEn": "Blackberry",
     "nameZh": "黑莓",
@@ -1295,26 +1306,6 @@
     "category": "fish",
     "tags": [],
     "source": "https://stardewvalleywiki.com/Mutant_Carp"
-  },
-  {
-    "id": "roe",
-    "nameEn": "Roe",
-    "nameZh": "鱼籽",
-    "basePrice": 30,
-    "category": "roe",
-    "tags": [],
-    "source": "https://stardewvalleywiki.com/Roe"
-  },
-  {
-    "id": "sturgeon_roe",
-    "nameEn": "Sturgeon Roe",
-    "nameZh": "鱼籽酱",
-    "basePrice": 100,
-    "category": "roe",
-    "tags": [
-      "sturgeon_roe"
-    ],
-    "source": "https://stardewvalleywiki.com/Sturgeon_Roe"
   },
   {
     "id": "milk",

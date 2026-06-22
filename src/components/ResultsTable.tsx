@@ -98,7 +98,15 @@ export function ResultsTable({ item, settings }: { item: Item; settings: Setting
 
                 <span className="text-right">
                   {r.goldPerDay === null ? (
-                    <span className="text-ink-soft text-sm">{t.instant}</span>
+                    // Instant (sell raw): show the gold you bank now, with a small "instant" tag.
+                    <>
+                      <span
+                        className={settings.rankBy === 'perDay' ? 'sv-coin justify-end' : 'text-ink-soft text-sm'}
+                      >
+                        {g(r.perInputValue)}g
+                      </span>
+                      <div className="text-ink-soft text-xs">{t.instant}</div>
+                    </>
                   ) : (
                     <>
                       <span

@@ -58,6 +58,7 @@ export const CATALOG: CatalogEntry[] = [
   // ---- Vegetables (→ Juice / Pickles) ----
   e('Parsnip', 'vegetable'),
   e('Summer Squash', 'vegetable'),
+  e('Broccoli', 'vegetable'),
   e('Green Bean', 'vegetable'),
   e('Cauliflower', 'vegetable'),
   e('Potato', 'vegetable'),
@@ -171,9 +172,8 @@ export const CATALOG: CatalogEntry[] = [
   e('Glacierfish', 'fish', []),
   e('Mutant Carp', 'fish', []),
 
-  // ---- Roe (→ Aged Roe / Caviar) ----
-  e('Roe', 'roe', [], 30),
-  e('Sturgeon Roe', 'roe', ['sturgeon_roe'], 100),
+  // Roe is not catalogued — it's derived per-fish in src/data/items.ts
+  // (Fish Pond → Roe = 30 + floor(fish price / 2); Sturgeon → Caviar).
 
   // ---- Animal products & specials ----
   e('Milk', 'milk', [], 125),
