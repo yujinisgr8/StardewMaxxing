@@ -13,7 +13,8 @@
     "build:data": "tsx scripts/build-data.ts",
     "test": "tsx src/engine/compute.test.ts && tsx src/engine/routes.smoke.test.ts && tsx src/data/items.seed.test.ts",
     "verify": "tsc --noEmit && npm test",
-    "package": "npm run build && cp package.json .pkgbak.json && electron-builder; ec=$?; [ -f .pkgbak.json ] && mv -f .pkgbak.json package.json; exit $ec"
+    "package": "npm run build && cp package.json .pkgbak.json && electron-builder; ec=$?; [ -f .pkgbak.json ] && mv -f .pkgbak.json package.json; if [ $ec -ne 0 ]; then exit $ec; fi; node scripts/smoke-package.mjs",
+    "package:check": "node scripts/smoke-package.mjs"
   },
   "dependencies": {},
   "devDependencies": {

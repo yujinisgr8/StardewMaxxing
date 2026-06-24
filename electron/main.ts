@@ -8,6 +8,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DEV_SERVER_URL = process.env.VITE_DEV_SERVER_URL;
 const RENDERER_DIST = path.join(__dirname, '../dist');
 
+// The post-package smoke test launches the app headless and inspects it via CDP; keep the
+// window hidden so the check doesn't flash a window on screen.
+const SMOKE = process.env.SMOKE_TEST === '1';
+
 // Some macOS GPU drivers leave the Electron window stuck on a blank/partial first frame
 // even though the page renders fine. This is a static pixel-art utility, so GPU compositing
 // buys us nothing — disabling it sidesteps that class of blank-window bug.
@@ -38,10 +42,10 @@ function createWindow() {
     },
   });
 
-  // Reveal only once the renderer has painted its first frame.
-  win.once('ready-to-show', () => win?.show());
+  // Reveal only once the renderer has painted its first frame (skip during smoke test).
+  win.once('ready-to-show', () => { if (!SMOKE) win?.show(); });
   // Safety net: never let the window get stuck hidden if ready-to-show is missed.
-  setTimeout(() => { if (win && !win.isVisible()) win.show(); }, 3000);
+  if (!SMOKE) setTimeout(() => { if (win && !win.isVisible()) win.show(); }, 3000);
 
   // Open external links in the default browser, never inside the app window.
   win.webContents.setWindowOpenHandler(({ url }) => {
