@@ -132,6 +132,14 @@ so the window can't get stuck hidden. Diagnose packaged-render issues with
       Caviar). Removed the Fish Pond machine + the fish→roe Jar branch + the standalone generic roe
       items, so a **fish's table is just Sell raw + Smoker** and roe stands alone (Bream Roe 52 → Aged
       104; Sturgeon Roe 130 → Caviar 500). 195 items, 24 tests green.
+- [x] **P11** One-click profession picker — replaced the 2 dropdowns/skill with single-row sv-btn
+      groups collapsed to the price-relevant picks (Farming: None/Tiller/Artisan/Rancher; Fishing:
+      None/Fisher/Angler), so a full build is 1 click/skill (was ~4). Each button maps to the
+      underlying level5/level10; a hint line shows the selected bonus. Speed/utility perks omitted
+      (no sell-value effect). Context-aware show/hide + i18n preserved.
+- **Packaging:** renderer served over a custom `app://` scheme (not file://) to fix raw-text/blank
+  windows; `npm run package` self-runs a CDP smoke test (`scripts/smoke-package.mjs`) that fails the
+  build if the packaged app doesn't render. `package.json` backed up/restored around electron-builder.
 
 ## Verification (run at T9, spot-check earlier)
 1. `npm run dev` → Electron window with HMR.
