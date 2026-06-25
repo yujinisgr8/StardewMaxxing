@@ -59,6 +59,7 @@ export const CATALOG: CatalogEntry[] = [
   e('Parsnip', 'vegetable'),
   e('Summer Squash', 'vegetable'),
   e('Broccoli', 'vegetable'),
+  e('Carrot', 'vegetable'),
   e('Green Bean', 'vegetable'),
   e('Cauliflower', 'vegetable'),
   e('Potato', 'vegetable'),

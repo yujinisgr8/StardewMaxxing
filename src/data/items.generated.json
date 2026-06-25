@@ -166,6 +166,17 @@
     "source": "https://stardewvalleywiki.com/Broccoli"
   },
   {
+    "id": "carrot",
+    "nameEn": "Carrot",
+    "nameZh": "胡萝卜",
+    "basePrice": 35,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Carrot"
+  },
+  {
     "id": "blackberry",
     "nameEn": "Blackberry",
     "nameZh": "黑莓",
