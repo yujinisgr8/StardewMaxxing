@@ -144,39 +144,6 @@
     "source": "https://stardewvalleywiki.com/Wild_Plum"
   },
   {
-    "id": "summer_squash",
-    "nameEn": "Summer Squash",
-    "nameZh": "夏南瓜",
-    "basePrice": 45,
-    "category": "vegetable",
-    "tags": [
-      "edible"
-    ],
-    "source": "https://stardewvalleywiki.com/Summer_Squash"
-  },
-  {
-    "id": "broccoli",
-    "nameEn": "Broccoli",
-    "nameZh": "西蓝花",
-    "basePrice": 70,
-    "category": "vegetable",
-    "tags": [
-      "edible"
-    ],
-    "source": "https://stardewvalleywiki.com/Broccoli"
-  },
-  {
-    "id": "carrot",
-    "nameEn": "Carrot",
-    "nameZh": "胡萝卜",
-    "basePrice": 35,
-    "category": "vegetable",
-    "tags": [
-      "edible"
-    ],
-    "source": "https://stardewvalleywiki.com/Carrot"
-  },
-  {
     "id": "blackberry",
     "nameEn": "Blackberry",
     "nameZh": "黑莓",
@@ -326,6 +293,39 @@
       "edible"
     ],
     "source": "https://stardewvalleywiki.com/Parsnip"
+  },
+  {
+    "id": "summer_squash",
+    "nameEn": "Summer Squash",
+    "nameZh": "金皮西葫芦",
+    "basePrice": 45,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Summer_Squash"
+  },
+  {
+    "id": "broccoli",
+    "nameEn": "Broccoli",
+    "nameZh": "西蓝花",
+    "basePrice": 70,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Broccoli"
+  },
+  {
+    "id": "carrot",
+    "nameEn": "Carrot",
+    "nameZh": "胡萝卜",
+    "basePrice": 35,
+    "category": "vegetable",
+    "tags": [
+      "edible"
+    ],
+    "source": "https://stardewvalleywiki.com/Carrot"
   },
   {
     "id": "green_bean",
@@ -1272,6 +1272,96 @@
     "category": "fish",
     "tags": [],
     "source": "https://stardewvalleywiki.com/Stingray"
+  },
+  {
+    "id": "lobster",
+    "nameEn": "Lobster",
+    "nameZh": "龙虾",
+    "basePrice": 120,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Lobster"
+  },
+  {
+    "id": "crab",
+    "nameEn": "Crab",
+    "nameZh": "螃蟹",
+    "basePrice": 100,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Crab"
+  },
+  {
+    "id": "crayfish",
+    "nameEn": "Crayfish",
+    "nameZh": "小龙虾",
+    "basePrice": 75,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Crayfish"
+  },
+  {
+    "id": "snail",
+    "nameEn": "Snail",
+    "nameZh": "蜗牛",
+    "basePrice": 65,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Snail"
+  },
+  {
+    "id": "shrimp",
+    "nameEn": "Shrimp",
+    "nameZh": "虾",
+    "basePrice": 60,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Shrimp"
+  },
+  {
+    "id": "clam",
+    "nameEn": "Clam",
+    "nameZh": "蛤",
+    "basePrice": 50,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Clam"
+  },
+  {
+    "id": "cockle",
+    "nameEn": "Cockle",
+    "nameZh": "鸟蛤",
+    "basePrice": 50,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Cockle"
+  },
+  {
+    "id": "oyster",
+    "nameEn": "Oyster",
+    "nameZh": "牡蛎",
+    "basePrice": 40,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Oyster"
+  },
+  {
+    "id": "mussel",
+    "nameEn": "Mussel",
+    "nameZh": "蚌",
+    "basePrice": 30,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Mussel"
+  },
+  {
+    "id": "periwinkle",
+    "nameEn": "Periwinkle",
+    "nameZh": "玉黍螺",
+    "basePrice": 20,
+    "category": "fish",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Periwinkle"
   },
   {
     "id": "crimsonfish",

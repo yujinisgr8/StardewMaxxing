@@ -166,6 +166,19 @@ export const CATALOG: CatalogEntry[] = [
   e('Lionfish', 'fish', []),
   e('Blue Discus', 'fish', []),
   e('Stingray', 'fish', []),
+  // Crab Pot (wiki: /Crab_Pot). Category Fish in-game, so they're Fisher/Angler-eligible,
+  // smokeable ("Any Fish" — the Fish Smoker page footnotes crab-pot fish explicitly), and
+  // pond-stockable (Fish Pond → Roe).
+  e('Lobster', 'fish', []),
+  e('Crab', 'fish', []),
+  e('Crayfish', 'fish', []),
+  e('Snail', 'fish', []),
+  e('Shrimp', 'fish', []),
+  e('Clam', 'fish', []),
+  e('Cockle', 'fish', []),
+  e('Oyster', 'fish', []),
+  e('Mussel', 'fish', []),
+  e('Periwinkle', 'fish', []),
   // Legendary
   e('Crimsonfish', 'fish', []),
   e('Angler', 'fish', []),

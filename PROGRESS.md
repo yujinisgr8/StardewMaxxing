@@ -16,8 +16,14 @@
   Sturgeon→Caviar 500); **real game sprites** for all 140 items in `src/assets/items/<id>.png`
   (committed, downloaded by `build:data`); `ItemIcon` renders them (`import.meta.glob`, pixelated,
   emoji-tile fallback); attribution (NOTICE.md + README + in-app footer + build credit line).
+- **Crab-pot shellfish added (2026-07-31):** Lobster 120 / Crab 100 / Crayfish 75 / Snail 65 /
+  Shrimp 60 / Clam 50 / Cockle 50 / Oyster 40 / Mussel 30 / Periwinkle 20, all `category: 'fish'`
+  (in-game they ARE category Fish → Fisher/Angler-eligible, Fish Smoker "Any Fish" accepts them per
+  the wiki's crab-pot footnote, and Fish Ponds take crab-pot fish → Roe). Sprites + zh names pulled
+  by `build:data`. Dataset now **151 generated items → 217 with derived roe**.
 - **Next step:** none — v0.3 verified & **re-packaged** (`release/StardewMaxxing.app` + DMG rebuilt
-  2026-06-17, includes the ErrorBoundary). Future ideas: crab-pot shellfish, product/output icons in
+  2026-06-17, includes the ErrorBoundary). NOTE: the packaged app predates the crab-pot items —
+  re-run `npm run package` to ship them. Future ideas: product/output icons in
   the results rows, app icon
   (electron-builder still uses the default), tidy the generated zh aged-roe names (e.g. 腌鲷鱼鱼籽 has
   a redundant 鱼).
