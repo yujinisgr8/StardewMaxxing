@@ -10,3 +10,7 @@ out/
 .claude/
 .pkgbak.json
 testing screenshots/
+
+# stray build output at repo root
+/main.js
+/index-*.js
