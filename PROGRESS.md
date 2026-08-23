@@ -16,8 +16,14 @@
   Sturgeon→Caviar 500); **real game sprites** for all 140 items in `src/assets/items/<id>.png`
   (committed, downloaded by `build:data`); `ItemIcon` renders them (`import.meta.glob`, pixelated,
   emoji-tile fallback); attribution (NOTICE.md + README + in-app footer + build credit line).
+- **Crab-pot shellfish added (2026-07-31):** Lobster 120 / Crab 100 / Crayfish 75 / Snail 65 /
+  Shrimp 60 / Clam 50 / Cockle 50 / Oyster 40 / Mussel 30 / Periwinkle 20, all `category: 'fish'`
+  (in-game they ARE category Fish → Fisher/Angler-eligible, Fish Smoker "Any Fish" accepts them per
+  the wiki's crab-pot footnote, and Fish Ponds take crab-pot fish → Roe). Sprites + zh names pulled
+  by `build:data`. Dataset now **151 generated items → 217 with derived roe**.
 - **Next step:** none — v0.3 verified & **re-packaged** (`release/StardewMaxxing.app` + DMG rebuilt
-  2026-06-17, includes the ErrorBoundary). Future ideas: crab-pot shellfish, product/output icons in
+  2026-06-17, includes the ErrorBoundary). NOTE: the packaged app predates the crab-pot items —
+  re-run `npm run package` to ship them. Future ideas: product/output icons in
   the results rows, app icon
   (electron-builder still uses the default), tidy the generated zh aged-roe names (e.g. 腌鲷鱼鱼籽 has
   a redundant 鱼).
@@ -126,6 +132,20 @@ so the window can't get stuck hidden. Diagnose packaged-render issues with
       sorted column (fixes "Dehydrator 125 looks best but Wine 240 is higher" — that was Gold/day mode:
       Dehydrator 1d beats Wine 7d). Added **Summer Squash** (45g vegetable, zh 夏南瓜) to catalog +
       generated.json → 141 items.
+- [x] **P10** Instant-price display + fish/roe split — (a) "Sell raw" now shows its price in the
+      Gold/day column with a small "instant" tag (so its rank is legible). (b) **Roe is its own
+      searchable item, derived per-fish** in `data/items.ts` (`30 + ⌊fish price ÷ 2⌋`; Sturgeon →
+      Caviar). Removed the Fish Pond machine + the fish→roe Jar branch + the standalone generic roe
+      items, so a **fish's table is just Sell raw + Smoker** and roe stands alone (Bream Roe 52 → Aged
+      104; Sturgeon Roe 130 → Caviar 500). 195 items, 24 tests green.
+- [x] **P11** One-click profession picker — replaced the 2 dropdowns/skill with single-row sv-btn
+      groups collapsed to the price-relevant picks (Farming: None/Tiller/Artisan/Rancher; Fishing:
+      None/Fisher/Angler), so a full build is 1 click/skill (was ~4). Each button maps to the
+      underlying level5/level10; a hint line shows the selected bonus. Speed/utility perks omitted
+      (no sell-value effect). Context-aware show/hide + i18n preserved.
+- **Packaging:** renderer served over a custom `app://` scheme (not file://) to fix raw-text/blank
+  windows; `npm run package` self-runs a CDP smoke test (`scripts/smoke-package.mjs`) that fails the
+  build if the packaged app doesn't render. `package.json` backed up/restored around electron-builder.
 
 ## Verification (run at T9, spot-check earlier)
 1. `npm run dev` → Electron window with HMR.

@@ -1,7 +1,14 @@
-import { Settings, Quality, Level5Prof, Level10Prof, FishL5, FishL10 } from '../engine/types';
+import { Settings, Quality } from '../engine/types';
 import { useI18n } from '../i18n';
 
 const QUALITIES: Quality[] = ['normal', 'silver', 'gold', 'iridium'];
+
+// The two skill trees collapsed to the picks that actually change sell value, so a full
+// build is one click per skill. (Artisan ⇒ Tiller branch; Angler ⇒ Fisher branch. The
+// growth/utility perks — Agriculturist, Shepherd, Pirate… — don't affect price, so they're
+// omitted here.) Each pick still maps to the underlying level5/level10 settings.
+type FarmPick = 'none' | 'tiller' | 'artisan' | 'rancher';
+type FishPick = 'none' | 'fisher' | 'angler';
 
 export function SettingsPanel({
   settings,
@@ -22,124 +29,96 @@ export function SettingsPanel({
     iridium: t.qualityIridium,
   };
 
-  // Stardew farming skill tree: Level 5 is one mutually-exclusive pick; Level 10
-  // branches off it. Only Tiller/Rancher/Artisan change sell value (the rest are
-  // growth/production-speed perks, shown so the choice is complete and informative).
-  const level5Opts: { v: Level5Prof; label: string }[] = [
-    { v: 'none', label: t.profNone },
-    { v: 'tiller', label: t.tiller },
-    { v: 'rancher', label: t.rancher },
-  ];
-
-  const level10Opts: { v: Level10Prof; label: string }[] =
-    settings.level5 === 'tiller'
-      ? [
-          { v: 'none', label: t.profNone },
-          { v: 'artisan', label: t.artisan },
-          { v: 'agriculturist', label: t.agriculturist },
-        ]
-      : settings.level5 === 'rancher'
-      ? [
-          { v: 'none', label: t.profNone },
-          { v: 'coopmaster', label: t.coopmaster },
-          { v: 'shepherd', label: t.shepherd },
-        ]
-      : [];
-
-  // Fishing skill tree (independent of farming). Only Fisher/Angler change sell value.
-  const fishL5Opts: { v: FishL5; label: string }[] = [
-    { v: 'none', label: t.profNone },
-    { v: 'fisher', label: t.fisher },
-    { v: 'trapper', label: t.trapper },
-  ];
-
-  const fishL10Opts: { v: FishL10; label: string }[] =
-    settings.fishingLevel5 === 'fisher'
-      ? [
-          { v: 'none', label: t.profNone },
-          { v: 'angler', label: t.angler },
-          { v: 'pirate', label: t.pirate },
-        ]
-      : settings.fishingLevel5 === 'trapper'
-      ? [
-          { v: 'none', label: t.profNone },
-          { v: 'mariner', label: t.mariner },
-          { v: 'luremaster', label: t.luremaster },
-        ]
-      : [];
-
-  const hints: Record<string, string> = {
-    tiller: t.tillerHint,
-    rancher: t.rancherHint,
-    artisan: t.artisanHint,
-    agriculturist: t.agriculturistHint,
-    coopmaster: t.coopmasterHint,
-    shepherd: t.shepherdHint,
-    fisher: t.fisherHint,
-    trapper: t.trapperHint,
-    angler: t.anglerHint,
-    pirate: t.pirateHint,
-    mariner: t.marinerHint,
-    luremaster: t.luremasterHint,
+  const farmPick: FarmPick =
+    settings.level5 === 'rancher'
+      ? 'rancher'
+      : settings.level10 === 'artisan'
+      ? 'artisan'
+      : settings.level5 === 'tiller'
+      ? 'tiller'
+      : 'none';
+  const farmSet: Record<FarmPick, Partial<Settings>> = {
+    none: { level5: 'none', level10: 'none' },
+    tiller: { level5: 'tiller', level10: 'none' },
+    artisan: { level5: 'tiller', level10: 'artisan' },
+    rancher: { level5: 'rancher', level10: 'none' },
   };
+  const farmOpts: { k: FarmPick; label: string }[] = [
+    { k: 'none', label: t.pNone },
+    { k: 'tiller', label: t.pTiller },
+    { k: 'artisan', label: t.pArtisan },
+    { k: 'rancher', label: t.pRancher },
+  ];
+  const farmHint =
+    farmPick === 'tiller'
+      ? t.tillerHint
+      : farmPick === 'artisan'
+      ? t.artisanHint
+      : farmPick === 'rancher'
+      ? t.rancherHint
+      : '';
+
+  const fishPick: FishPick =
+    settings.fishingLevel10 === 'angler'
+      ? 'angler'
+      : settings.fishingLevel5 === 'fisher'
+      ? 'fisher'
+      : 'none';
+  const fishSet: Record<FishPick, Partial<Settings>> = {
+    none: { fishingLevel5: 'none', fishingLevel10: 'none' },
+    fisher: { fishingLevel5: 'fisher', fishingLevel10: 'none' },
+    angler: { fishingLevel5: 'fisher', fishingLevel10: 'angler' },
+  };
+  const fishOpts: { k: FishPick; label: string }[] = [
+    { k: 'none', label: t.pNone },
+    { k: 'fisher', label: t.pFisher },
+    { k: 'angler', label: t.pAngler },
+  ];
+  const fishHint = fishPick === 'fisher' ? t.fisherHint : fishPick === 'angler' ? t.anglerHint : '';
 
   return (
     <div className="sv-frame">
       <div className="sv-panel p-4 space-y-4">
         <h2 className="text-lg">{t.settings}</h2>
 
-        {/* Farming professions — shown only when they can affect this item's routes. */}
+        {/* Farming professions — one-click price picks; shown only when they affect this item. */}
         {relevance.farming && (
           <div>
             <div className="text-ink-soft text-sm mb-1">{t.professions}</div>
-            <div className="space-y-2">
-              <ProfSelect
-                label={t.level5}
-                value={settings.level5}
-                options={level5Opts}
-                hint={hints[settings.level5]}
-                // Switching the Lvl-5 branch invalidates the Lvl-10 pick → reset it.
-                onChange={(v) => set({ level5: v as Level5Prof, level10: 'none' })}
-              />
-              {settings.level5 !== 'none' && (
-                <ProfSelect
-                  label={t.level10}
-                  value={settings.level10}
-                  options={level10Opts}
-                  hint={hints[settings.level10]}
-                  onChange={(v) => set({ level10: v as Level10Prof })}
-                />
-              )}
+            <div className="grid grid-cols-2 gap-1.5">
+              {farmOpts.map((o) => (
+                <button
+                  key={o.k}
+                  className={`sv-btn text-sm ${farmPick === o.k ? 'sv-btn--on' : ''}`}
+                  onClick={() => set(farmSet[o.k])}
+                >
+                  {o.label}
+                </button>
+              ))}
             </div>
+            {farmHint && <div className="text-ink-soft text-xs mt-1">{farmHint}</div>}
           </div>
         )}
 
-        {/* Fishing professions — separate skill tree; shown for fish (raw & smoked). */}
+        {/* Fishing professions */}
         {relevance.fishing && (
           <div>
             <div className="text-ink-soft text-sm mb-1">{t.fishingProfessions}</div>
-            <div className="space-y-2">
-              <ProfSelect
-                label={t.level5}
-                value={settings.fishingLevel5}
-                options={fishL5Opts}
-                hint={hints[settings.fishingLevel5]}
-                onChange={(v) => set({ fishingLevel5: v as FishL5, fishingLevel10: 'none' })}
-              />
-              {settings.fishingLevel5 !== 'none' && (
-                <ProfSelect
-                  label={t.level10}
-                  value={settings.fishingLevel10}
-                  options={fishL10Opts}
-                  hint={hints[settings.fishingLevel10]}
-                  onChange={(v) => set({ fishingLevel10: v as FishL10 })}
-                />
-              )}
+            <div className="grid grid-cols-3 gap-1.5">
+              {fishOpts.map((o) => (
+                <button
+                  key={o.k}
+                  className={`sv-btn text-sm ${fishPick === o.k ? 'sv-btn--on' : ''}`}
+                  onClick={() => set(fishSet[o.k])}
+                >
+                  {o.label}
+                </button>
+              ))}
             </div>
+            {fishHint && <div className="text-ink-soft text-xs mt-1">{fishHint}</div>}
           </div>
         )}
 
-        {/* Item that no profession affects (e.g. plain Roe). */}
         {!relevance.farming && !relevance.fishing && (
           <div className="text-ink-soft text-sm">{t.noProfForItem}</div>
         )}
@@ -179,39 +158,6 @@ export function SettingsPanel({
           </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-/** A labeled native dropdown styled as an inset parchment slot, with a benefit hint. */
-function ProfSelect({
-  label,
-  value,
-  options,
-  hint,
-  onChange,
-}: {
-  label: string;
-  value: string;
-  options: { v: string; label: string }[];
-  hint?: string;
-  onChange: (v: string) => void;
-}) {
-  return (
-    <div>
-      <label className="block text-ink-soft text-xs mb-0.5">{label}</label>
-      <select
-        className="sv-input w-full text-sm cursor-pointer"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-      >
-        {options.map((o) => (
-          <option key={o.v} value={o.v}>
-            {o.label}
-          </option>
-        ))}
-      </select>
-      {hint && <div className="text-ink-soft text-xs mt-0.5">{hint}</div>}
     </div>
   );
 }

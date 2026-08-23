@@ -58,6 +58,8 @@ export const CATALOG: CatalogEntry[] = [
   // ---- Vegetables (→ Juice / Pickles) ----
   e('Parsnip', 'vegetable'),
   e('Summer Squash', 'vegetable'),
+  e('Broccoli', 'vegetable'),
+  e('Carrot', 'vegetable'),
   e('Green Bean', 'vegetable'),
   e('Cauliflower', 'vegetable'),
   e('Potato', 'vegetable'),
@@ -164,6 +166,19 @@ export const CATALOG: CatalogEntry[] = [
   e('Lionfish', 'fish', []),
   e('Blue Discus', 'fish', []),
   e('Stingray', 'fish', []),
+  // Crab Pot (wiki: /Crab_Pot). Category Fish in-game, so they're Fisher/Angler-eligible,
+  // smokeable ("Any Fish" — the Fish Smoker page footnotes crab-pot fish explicitly), and
+  // pond-stockable (Fish Pond → Roe).
+  e('Lobster', 'fish', []),
+  e('Crab', 'fish', []),
+  e('Crayfish', 'fish', []),
+  e('Snail', 'fish', []),
+  e('Shrimp', 'fish', []),
+  e('Clam', 'fish', []),
+  e('Cockle', 'fish', []),
+  e('Oyster', 'fish', []),
+  e('Mussel', 'fish', []),
+  e('Periwinkle', 'fish', []),
   // Legendary
   e('Crimsonfish', 'fish', []),
   e('Angler', 'fish', []),
@@ -171,9 +186,8 @@ export const CATALOG: CatalogEntry[] = [
   e('Glacierfish', 'fish', []),
   e('Mutant Carp', 'fish', []),
 
-  // ---- Roe (→ Aged Roe / Caviar) ----
-  e('Roe', 'roe', [], 30),
-  e('Sturgeon Roe', 'roe', ['sturgeon_roe'], 100),
+  // Roe is not catalogued — it's derived per-fish in src/data/items.ts
+  // (Fish Pond → Roe = 30 + floor(fish price / 2); Sturgeon → Caviar).
 
   // ---- Animal products & specials ----
   e('Milk', 'milk', [], 125),

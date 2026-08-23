@@ -8,3 +8,4 @@ out/
 .vite/
 .cache/
 .claude/
+.pkgbak.json
