@@ -86,6 +86,13 @@ export interface RouteResult {
   note?: string;
 }
 
+/** A profession bonus that actually fired on a route (for the UI's "stacking" note). */
+export type BonusKey = 'tiller' | 'rancher' | 'artisan' | 'fisher' | 'angler';
+export interface AppliedBonus {
+  key: BonusKey;
+  mult: number; // the multiplier this profession contributed, e.g. 1.4 for Artisan
+}
+
 /** A fully-costed route after applying Settings, ready for the UI. */
 export interface ProcessRoute extends RouteResult {
   value: number; // total batch sell value after professions/quality, rounded (gross, no costs)
@@ -93,5 +100,8 @@ export interface ProcessRoute extends RouteResult {
   perInputValue: number; // NET gold per single raw input: (value - extraCost) / inputCount
   effectiveDays: number; // days rounded up to whole "collect next morning" slots (0 = instant)
   goldPerDay: number | null; // perInputValue / effectiveDays; null when instant (raw)
+  // Profession bonuses that actually applied, in multiplication order. Two or more means
+  // they stack (e.g. Smoked Fish gets Angler ×1.5 AND Artisan ×1.4).
+  appliedBonuses: AppliedBonus[];
   best: boolean;
 }
