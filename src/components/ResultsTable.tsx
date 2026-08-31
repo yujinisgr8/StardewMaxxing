@@ -7,6 +7,8 @@ import { ItemIcon } from './ItemIcon';
 
 const MACHINE = Object.fromEntries(MACHINES.map((m) => [m.id, m]));
 const g = (n: number) => Math.round(n).toLocaleString('en-US');
+// Trim trailing zeros so 1.50 → ×1.5 but 1.25 keeps both decimals.
+const mult = (n: number) => `×${parseFloat(n.toFixed(2))}`;
 
 export function ResultsTable({ item, settings }: { item: Item; settings: Settings }) {
   const { t, lang, name } = useI18n();
@@ -72,9 +74,30 @@ export function ResultsTable({ item, settings }: { item: Item; settings: Setting
                   {machineName(r.machineId)}
                 </span>
 
-                <span className="truncate" title={lang === 'zh' ? r.outputNameZh : r.outputNameEn}>
-                  {lang === 'zh' ? r.outputNameZh : r.outputNameEn}
-                  {batched && <span className="text-ink-soft text-xs"> · {t.batch(r.inputCount)}</span>}
+                <span className="min-w-0">
+                  <span className="block truncate" title={lang === 'zh' ? r.outputNameZh : r.outputNameEn}>
+                    {lang === 'zh' ? r.outputNameZh : r.outputNameEn}
+                    {batched && (
+                      <span className="text-ink-soft text-xs"> · {t.batch(r.inputCount)}</span>
+                    )}
+                  </span>
+                  {/* Two or more profession bonuses on one route means they multiply — spell it
+                      out, since Smoked Fish (fishing bonus × Artisan) isn't obvious. */}
+                  {r.appliedBonuses.length > 1 && (
+                    <span className="flex flex-wrap items-center gap-1 mt-0.5 text-xs">
+                      {r.appliedBonuses.map((b) => (
+                        <span
+                          key={b.key}
+                          className="bg-wood-light/70 border border-wood/50 rounded-sm px-1 text-ink"
+                        >
+                          {t.bonusName[b.key]} {mult(b.mult)}
+                        </span>
+                      ))}
+                      <span className="text-ink-soft">
+                        = {mult(r.appliedBonuses.reduce((m, b) => m * b.mult, 1))} {t.stacks}
+                      </span>
+                    </span>
+                  )}
                 </span>
 
                 <span className="text-right">

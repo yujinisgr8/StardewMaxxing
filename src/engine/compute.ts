@@ -1,5 +1,5 @@
 // Turns a raw Item + Settings into a ranked list of ProcessRoutes for the UI.
-import { Item, Settings, ProcessRoute, RouteResult, QUALITY_MULT } from './types';
+import { Item, Settings, ProcessRoute, RouteResult, AppliedBonus, QUALITY_MULT } from './types';
 import { MACHINES } from './machines';
 
 const ARTISAN_MULT = 1.4; // Artisan profession: +40%
@@ -21,12 +21,17 @@ function priceRoute(r: RouteResult, s: Settings): ProcessRoute {
   const fisher = s.fishingLevel5 === 'fisher';
   const angler = s.fishingLevel10 === 'angler';
 
-  let mult = 1;
-  if (r.artisanGood && artisan) mult *= ARTISAN_MULT;
-  if (r.tillerEligible && tiller) mult *= TILLER_MULT;
-  if (r.rancherEligible && rancher) mult *= RANCHER_MULT;
-  // Fishing professions don't stack: Angler (+50%) supersedes Fisher (+25%).
-  if (r.fishEligible) mult *= angler ? ANGLER_MULT : fisher ? FISHER_MULT : 1;
+  // Collect the bonuses that actually fire so the UI can show what's stacking on a route
+  // (Smoked Fish is the case that stacks two: a fishing bonus AND Artisan).
+  const applied: AppliedBonus[] = [];
+  if (r.artisanGood && artisan) applied.push({ key: 'artisan', mult: ARTISAN_MULT });
+  if (r.tillerEligible && tiller) applied.push({ key: 'tiller', mult: TILLER_MULT });
+  if (r.rancherEligible && rancher) applied.push({ key: 'rancher', mult: RANCHER_MULT });
+  // Fishing professions don't stack with each other: Angler (+50%) supersedes Fisher (+25%).
+  if (r.fishEligible && angler) applied.push({ key: 'angler', mult: ANGLER_MULT });
+  else if (r.fishEligible && fisher) applied.push({ key: 'fisher', mult: FISHER_MULT });
+
+  let mult = applied.reduce((m, b) => m * b.mult, 1);
   if (r.qualitySensitive) mult *= QUALITY_MULT[s.quality];
 
   const value = Math.round(r.baseValue * mult);
@@ -38,7 +43,16 @@ function priceRoute(r: RouteResult, s: Settings): ProcessRoute {
   const effectiveDays = r.days > 0 ? Math.ceil(r.days) : 0;
   const goldPerDay = effectiveDays > 0 ? perInputValue / effectiveDays : null;
 
-  return { ...r, value, extraCost, perInputValue, effectiveDays, goldPerDay, best: false };
+  return {
+    ...r,
+    value,
+    extraCost,
+    perInputValue,
+    effectiveDays,
+    goldPerDay,
+    appliedBonuses: applied,
+    best: false,
+  };
 }
 
 /**
