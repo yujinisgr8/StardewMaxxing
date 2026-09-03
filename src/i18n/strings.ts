@@ -81,6 +81,19 @@ const en = {
     explainPerDay:
       'Gold/day — gold per in-game day the machine is busy, rounded up to whole “collect next morning” days. Higher = more profit when machines or time are your limit.',
     rawValueNote: 'base sell price',
+    // "Other uses" panel — what to do with an item besides selling/processing it.
+    otherUses: 'Other uses',
+    usesBundle: 'Bundle',
+    usesLovedBy: 'Loved gift',
+    usesRecipes: 'Ingredient in',
+    usesQuest: 'Help Wanted',
+    usesQuestText: (g: number | null) =>
+      g === null
+        ? 'Can be randomly requested at the “Help Wanted” board.'
+        : `Can be randomly requested at the “Help Wanted” board (${g}g + friendship).`,
+    usesLovedHint: 'Loved gifts give 8× friendship.',
+    usesNone: 'The wiki lists no bundles, loved gifts, recipes or quests for this one.',
+    usesMore: (n: number) => `+${n} more`,
 };
 
 export type UIStrings = typeof en;
@@ -163,6 +176,18 @@ const zh: UIStrings = {
     explainPerDay:
       '每日金额 — 机器占用每个游戏日的收益，向上取整到整数“次日清晨收取”天数。数值越高，在机器或时间有限时越赚钱。',
     rawValueNote: '基础售价',
+    otherUses: '其他用途',
+    usesBundle: '收集包',
+    usesLovedBy: '喜爱的礼物',
+    usesRecipes: '用于料理',
+    usesQuest: '求助任务',
+    usesQuestText: (g: number | null) =>
+      g === null
+        ? '可能出现在布告栏的随机求助任务中。'
+        : `可能出现在布告栏的随机求助任务中（${g}金 + 友谊点）。`,
+    usesLovedHint: '喜爱的礼物可获得 8 倍友谊值。',
+    usesNone: 'wiki 未记录该物品的收集包、喜爱礼物、料理或任务。',
+    usesMore: (n: number) => `还有 ${n} 项`,
 };
 
 export const STRINGS: Record<Lang, UIStrings> = { en, zh };

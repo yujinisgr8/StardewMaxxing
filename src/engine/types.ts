@@ -26,6 +26,24 @@ export const QUALITY_MULT: Record<Quality, number> = {
   iridium: 2,
 };
 
+/** A name carried in both languages, like the item names themselves. */
+export interface Named {
+  en: string;
+  zh: string;
+}
+
+/**
+ * What else an item is good for besides selling/processing — scraped from the wiki so the app
+ * can answer "so what DO I do with this?" for items with few or no profitable routes.
+ */
+export interface ItemUses {
+  bundles: { bundle: Named; room: Named }[];
+  lovedBy: Named[];   // villagers who LOVE it as a gift (8x friendship)
+  recipes: Named[];   // dishes/crafts it's an ingredient in
+  /** Randomly requested on the "Help Wanted" board; gold reward when the wiki states one. */
+  quest?: { reward: number | null };
+}
+
 export interface Item {
   id: string;
   nameEn: string;
@@ -41,6 +59,7 @@ export interface Item {
    */
   tags: string[];
   source?: string; // wiki URL the data came from
+  uses?: ItemUses; // bundles / gifts / recipes / quests (see ItemUses)
 }
 
 // Farming professions, modeled as the in-game skill tree (wiki: Skills/Farming).

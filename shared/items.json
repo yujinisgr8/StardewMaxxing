@@ -5417,5 +5417,601 @@
         "reward": null
       }
     }
+  },
+  {
+    "id": "carp_roe",
+    "nameEn": "Carp Roe",
+    "nameZh": "鲤鱼鱼籽",
+    "basePrice": 45,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Carp"
+  },
+  {
+    "id": "catfish_roe",
+    "nameEn": "Catfish Roe",
+    "nameZh": "鲶鱼鱼籽",
+    "basePrice": 130,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Catfish"
+  },
+  {
+    "id": "chub_roe",
+    "nameEn": "Chub Roe",
+    "nameZh": "鲢鱼鱼籽",
+    "basePrice": 55,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Chub"
+  },
+  {
+    "id": "bream_roe",
+    "nameEn": "Bream Roe",
+    "nameZh": "鲷鱼鱼籽",
+    "basePrice": 52,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Bream"
+  },
+  {
+    "id": "dorado_roe",
+    "nameEn": "Dorado Roe",
+    "nameZh": "麻哈脂鲤鱼籽",
+    "basePrice": 80,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Dorado"
+  },
+  {
+    "id": "pike_roe",
+    "nameEn": "Pike Roe",
+    "nameZh": "狗鱼鱼籽",
+    "basePrice": 80,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Pike"
+  },
+  {
+    "id": "perch_roe",
+    "nameEn": "Perch Roe",
+    "nameZh": "河鲈鱼籽",
+    "basePrice": 57,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Perch"
+  },
+  {
+    "id": "walleye_roe",
+    "nameEn": "Walleye Roe",
+    "nameZh": "大眼鱼鱼籽",
+    "basePrice": 82,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Walleye"
+  },
+  {
+    "id": "rainbow_trout_roe",
+    "nameEn": "Rainbow Trout Roe",
+    "nameZh": "虹鳟鱼鱼籽",
+    "basePrice": 62,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Rainbow_Trout"
+  },
+  {
+    "id": "tiger_trout_roe",
+    "nameEn": "Tiger Trout Roe",
+    "nameZh": "虎纹鳟鱼鱼籽",
+    "basePrice": 105,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Tiger_Trout"
+  },
+  {
+    "id": "salmon_roe",
+    "nameEn": "Salmon Roe",
+    "nameZh": "鲑鱼鱼籽",
+    "basePrice": 67,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Salmon"
+  },
+  {
+    "id": "smallmouth_bass_roe",
+    "nameEn": "Smallmouth Bass Roe",
+    "nameZh": "小嘴鲈鱼鱼籽",
+    "basePrice": 55,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Smallmouth_Bass"
+  },
+  {
+    "id": "largemouth_bass_roe",
+    "nameEn": "Largemouth Bass Roe",
+    "nameZh": "大嘴鲈鱼鱼籽",
+    "basePrice": 80,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Largemouth_Bass"
+  },
+  {
+    "id": "bullhead_roe",
+    "nameEn": "Bullhead Roe",
+    "nameZh": "大头鱼鱼籽",
+    "basePrice": 67,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Bullhead"
+  },
+  {
+    "id": "sunfish_roe",
+    "nameEn": "Sunfish Roe",
+    "nameZh": "太阳鱼鱼籽",
+    "basePrice": 45,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Sunfish"
+  },
+  {
+    "id": "shad_roe",
+    "nameEn": "Shad Roe",
+    "nameZh": "西鲱鱼籽",
+    "basePrice": 60,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Shad"
+  },
+  {
+    "id": "lingcod_roe",
+    "nameEn": "Lingcod Roe",
+    "nameZh": "蛇齿单线鱼鱼籽",
+    "basePrice": 90,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Lingcod"
+  },
+  {
+    "id": "sturgeon_roe",
+    "nameEn": "Sturgeon Roe",
+    "nameZh": "鲟鱼籽",
+    "basePrice": 130,
+    "category": "roe",
+    "tags": [
+      "sturgeon_roe"
+    ],
+    "source": "https://stardewvalleywiki.com/Sturgeon"
+  },
+  {
+    "id": "midnight_carp_roe",
+    "nameEn": "Midnight Carp Roe",
+    "nameZh": "午夜鲤鱼鱼籽",
+    "basePrice": 105,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Midnight_Carp"
+  },
+  {
+    "id": "slimejack_roe",
+    "nameEn": "Slimejack Roe",
+    "nameZh": "史莱姆鱼鱼籽",
+    "basePrice": 80,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Slimejack"
+  },
+  {
+    "id": "woodskip_roe",
+    "nameEn": "Woodskip Roe",
+    "nameZh": "木跃鱼鱼籽",
+    "basePrice": 67,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Woodskip"
+  },
+  {
+    "id": "void_salmon_roe",
+    "nameEn": "Void Salmon Roe",
+    "nameZh": "虚空鲑鱼鱼籽",
+    "basePrice": 105,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Void_Salmon"
+  },
+  {
+    "id": "goby_roe",
+    "nameEn": "Goby Roe",
+    "nameZh": "虾虎鱼鱼籽",
+    "basePrice": 105,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Goby"
+  },
+  {
+    "id": "anchovy_roe",
+    "nameEn": "Anchovy Roe",
+    "nameZh": "鳀鱼鱼籽",
+    "basePrice": 45,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Anchovy"
+  },
+  {
+    "id": "sardine_roe",
+    "nameEn": "Sardine Roe",
+    "nameZh": "沙丁鱼鱼籽",
+    "basePrice": 50,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Sardine"
+  },
+  {
+    "id": "herring_roe",
+    "nameEn": "Herring Roe",
+    "nameZh": "鲱鱼鱼籽",
+    "basePrice": 45,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Herring"
+  },
+  {
+    "id": "tuna_roe",
+    "nameEn": "Tuna Roe",
+    "nameZh": "金枪鱼鱼籽",
+    "basePrice": 80,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Tuna"
+  },
+  {
+    "id": "albacore_roe",
+    "nameEn": "Albacore Roe",
+    "nameZh": "青花鱼鱼籽",
+    "basePrice": 67,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Albacore"
+  },
+  {
+    "id": "halibut_roe",
+    "nameEn": "Halibut Roe",
+    "nameZh": "大比目鱼鱼籽",
+    "basePrice": 70,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Halibut"
+  },
+  {
+    "id": "red_snapper_roe",
+    "nameEn": "Red Snapper Roe",
+    "nameZh": "红鲷鱼鱼籽",
+    "basePrice": 55,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Red_Snapper"
+  },
+  {
+    "id": "red_mullet_roe",
+    "nameEn": "Red Mullet Roe",
+    "nameZh": "红鲻鱼鱼籽",
+    "basePrice": 67,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Red_Mullet"
+  },
+  {
+    "id": "tilapia_roe",
+    "nameEn": "Tilapia Roe",
+    "nameZh": "罗非鱼鱼籽",
+    "basePrice": 67,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Tilapia"
+  },
+  {
+    "id": "flounder_roe",
+    "nameEn": "Flounder Roe",
+    "nameZh": "比目鱼鱼籽",
+    "basePrice": 80,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Flounder"
+  },
+  {
+    "id": "sea_cucumber_roe",
+    "nameEn": "Sea Cucumber Roe",
+    "nameZh": "海参鱼籽",
+    "basePrice": 67,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Sea_Cucumber"
+  },
+  {
+    "id": "super_cucumber_roe",
+    "nameEn": "Super Cucumber Roe",
+    "nameZh": "大海参鱼籽",
+    "basePrice": 155,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Super_Cucumber"
+  },
+  {
+    "id": "eel_roe",
+    "nameEn": "Eel Roe",
+    "nameZh": "鳗鱼鱼籽",
+    "basePrice": 72,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Eel"
+  },
+  {
+    "id": "octopus_roe",
+    "nameEn": "Octopus Roe",
+    "nameZh": "章鱼鱼籽",
+    "basePrice": 105,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Octopus"
+  },
+  {
+    "id": "squid_roe",
+    "nameEn": "Squid Roe",
+    "nameZh": "鱿鱼鱼籽",
+    "basePrice": 70,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Squid"
+  },
+  {
+    "id": "pufferfish_roe",
+    "nameEn": "Pufferfish Roe",
+    "nameZh": "河豚鱼籽",
+    "basePrice": 130,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Pufferfish"
+  },
+  {
+    "id": "midnight_squid_roe",
+    "nameEn": "Midnight Squid Roe",
+    "nameZh": "午夜鱿鱼鱼籽",
+    "basePrice": 80,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Midnight_Squid"
+  },
+  {
+    "id": "spook_fish_roe",
+    "nameEn": "Spook Fish Roe",
+    "nameZh": "幽灵鱼鱼籽",
+    "basePrice": 140,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Spook_Fish"
+  },
+  {
+    "id": "blobfish_roe",
+    "nameEn": "Blobfish Roe",
+    "nameZh": "水滴鱼鱼籽",
+    "basePrice": 280,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Blobfish"
+  },
+  {
+    "id": "ghostfish_roe",
+    "nameEn": "Ghostfish Roe",
+    "nameZh": "鬼鱼鱼籽",
+    "basePrice": 52,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Ghostfish"
+  },
+  {
+    "id": "stonefish_roe",
+    "nameEn": "Stonefish Roe",
+    "nameZh": "石鱼鱼籽",
+    "basePrice": 180,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Stonefish"
+  },
+  {
+    "id": "ice_pip_roe",
+    "nameEn": "Ice Pip Roe",
+    "nameZh": "冰柱鱼鱼籽",
+    "basePrice": 280,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Ice_Pip"
+  },
+  {
+    "id": "lava_eel_roe",
+    "nameEn": "Lava Eel Roe",
+    "nameZh": "岩浆鳗鱼鱼籽",
+    "basePrice": 380,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Lava_Eel"
+  },
+  {
+    "id": "sandfish_roe",
+    "nameEn": "Sandfish Roe",
+    "nameZh": "沙鱼鱼籽",
+    "basePrice": 67,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Sandfish"
+  },
+  {
+    "id": "scorpion_carp_roe",
+    "nameEn": "Scorpion Carp Roe",
+    "nameZh": "蝎鲤鱼鱼籽",
+    "basePrice": 105,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Scorpion_Carp"
+  },
+  {
+    "id": "lionfish_roe",
+    "nameEn": "Lionfish Roe",
+    "nameZh": "狮子鱼鱼籽",
+    "basePrice": 80,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Lionfish"
+  },
+  {
+    "id": "blue_discus_roe",
+    "nameEn": "Blue Discus Roe",
+    "nameZh": "蓝铁饼鱼鱼籽",
+    "basePrice": 90,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Blue_Discus"
+  },
+  {
+    "id": "stingray_roe",
+    "nameEn": "Stingray Roe",
+    "nameZh": "黄貂鱼鱼籽",
+    "basePrice": 120,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Stingray"
+  },
+  {
+    "id": "lobster_roe",
+    "nameEn": "Lobster Roe",
+    "nameZh": "龙虾鱼籽",
+    "basePrice": 90,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Lobster"
+  },
+  {
+    "id": "crab_roe",
+    "nameEn": "Crab Roe",
+    "nameZh": "螃蟹鱼籽",
+    "basePrice": 80,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Crab"
+  },
+  {
+    "id": "crayfish_roe",
+    "nameEn": "Crayfish Roe",
+    "nameZh": "小龙虾鱼籽",
+    "basePrice": 67,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Crayfish"
+  },
+  {
+    "id": "snail_roe",
+    "nameEn": "Snail Roe",
+    "nameZh": "蜗牛鱼籽",
+    "basePrice": 62,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Snail"
+  },
+  {
+    "id": "shrimp_roe",
+    "nameEn": "Shrimp Roe",
+    "nameZh": "虾鱼籽",
+    "basePrice": 60,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Shrimp"
+  },
+  {
+    "id": "clam_roe",
+    "nameEn": "Clam Roe",
+    "nameZh": "蛤鱼籽",
+    "basePrice": 55,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Clam"
+  },
+  {
+    "id": "cockle_roe",
+    "nameEn": "Cockle Roe",
+    "nameZh": "鸟蛤鱼籽",
+    "basePrice": 55,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Cockle"
+  },
+  {
+    "id": "oyster_roe",
+    "nameEn": "Oyster Roe",
+    "nameZh": "牡蛎鱼籽",
+    "basePrice": 50,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Oyster"
+  },
+  {
+    "id": "mussel_roe",
+    "nameEn": "Mussel Roe",
+    "nameZh": "蚌鱼籽",
+    "basePrice": 45,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Mussel"
+  },
+  {
+    "id": "periwinkle_roe",
+    "nameEn": "Periwinkle Roe",
+    "nameZh": "玉黍螺鱼籽",
+    "basePrice": 40,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Periwinkle"
+  },
+  {
+    "id": "crimsonfish_roe",
+    "nameEn": "Crimsonfish Roe",
+    "nameZh": "绯红鱼鱼籽",
+    "basePrice": 780,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Crimsonfish"
+  },
+  {
+    "id": "angler_roe",
+    "nameEn": "Angler Roe",
+    "nameZh": "鮟鱇鱼鱼籽",
+    "basePrice": 480,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Angler"
+  },
+  {
+    "id": "legend_roe",
+    "nameEn": "Legend Roe",
+    "nameZh": "传说之鱼鱼籽",
+    "basePrice": 2530,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Legend"
+  },
+  {
+    "id": "glacierfish_roe",
+    "nameEn": "Glacierfish Roe",
+    "nameZh": "冰川鱼鱼籽",
+    "basePrice": 530,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Glacierfish"
+  },
+  {
+    "id": "mutant_carp_roe",
+    "nameEn": "Mutant Carp Roe",
+    "nameZh": "变种鲤鱼鱼籽",
+    "basePrice": 530,
+    "category": "roe",
+    "tags": [],
+    "source": "https://stardewvalleywiki.com/Mutant_Carp"
   }
 ]

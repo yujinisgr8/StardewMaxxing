@@ -4,6 +4,7 @@ import { Item, Settings } from './engine/types';
 import { SearchBar } from './components/SearchBar';
 import { SettingsPanel } from './components/SettingsPanel';
 import { ResultsTable } from './components/ResultsTable';
+import { UsesPanel } from './components/UsesPanel';
 import { LanguageToggle } from './components/LanguageToggle';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { profRelevance } from './engine/compute';
@@ -49,7 +50,10 @@ function Shell() {
           relevance={item ? profRelevance(item) : { farming: true, fishing: true }}
         />
         {item ? (
-          <ResultsTable item={item} settings={settings} />
+          <div>
+            <ResultsTable item={item} settings={settings} />
+            <UsesPanel item={item} />
+          </div>
         ) : (
           <div className="sv-frame">
             <div className="sv-panel p-8 text-center text-ink-soft">{t.pickPrompt}</div>

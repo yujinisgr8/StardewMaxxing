@@ -9,15 +9,18 @@ import { writeFileSync, mkdirSync, existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { CATALOG } from './catalog';
-import { Item } from '../src/engine/types';
+import { Item, ItemUses, Named } from '../src/engine/types';
+import { parseBundles, parseLovedBy, parseRecipes, parseQuest, zip } from './uses';
 import { validateItems } from '../src/engine/items.schema';
+import { writeSharedItems } from './derive-items';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const CACHE = join(ROOT, '.cache', 'wiki');
 const OUT = join(ROOT, 'src', 'data', 'items.generated.json');
-const SPRITES = join(ROOT, 'src', 'assets', 'items');
+const SPRITES = join(ROOT, 'shared', 'sprites');
 const WIKI = 'https://stardewvalleywiki.com';
+const ZH_WIKI = 'https://zh.stardewvalleywiki.com';
 const UA =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36';
 const CREDIT =
@@ -39,9 +42,74 @@ async function fetchPage(page: string): Promise<string> {
   return html;
 }
 
+/** The Chinese wiki lives on its own host; pages are keyed by the official zh title. */
+async function fetchZhPage(zhTitle: string): Promise<string | null> {
+  mkdirSync(CACHE, { recursive: true });
+  const cacheFile = join(CACHE, 'zh_' + zhTitle.replace(/[^\w\u4e00-\u9fff]+/g, '_') + '.html');
+  if (existsSync(cacheFile)) return readFileSync(cacheFile, 'utf-8');
+  const url = `${ZH_WIKI}/${encodeURIComponent(zhTitle.replace(/ /g, '_'))}`;
+  const res = await fetch(url, { headers: { 'User-Agent': UA } });
+  if (!res.ok) return null;
+  const html = await res.text();
+  writeFileSync(cacheFile, html);
+  await sleep(250);
+  return html;
+}
+
+// Villager Chinese names come from each villager's OWN page (via its interlanguage link) rather
+// than from the position of a name inside a table row, which the two wikis order differently.
+const villagerZh = new Map<string, string>();
+async function zhVillager(en: string): Promise<string> {
+  const hit = villagerZh.get(en);
+  if (hit !== undefined) return hit;
+  let zh = en;
+  try {
+    zh = parseZhName(await fetchPage(en)) ?? en;
+  } catch {
+    /* villager page missing → fall back to the English name */
+  }
+  villagerZh.set(en, zh);
+  return zh;
+}
+
+/** Assemble the bundles / loved-by / recipes / quest block for one item. */
+async function buildUses(enHtml: string, nameZh: string | null): Promise<ItemUses> {
+  const zhHtml = nameZh ? await fetchZhPage(nameZh) : null;
+
+  const enBundles = parseBundles(enHtml, false);
+  const zhBundles = zhHtml ? parseBundles(zhHtml, true) : [];
+  const bundles = enBundles.map((b, i) => ({
+    bundle: { en: b.bundle, zh: zhBundles[i]?.bundle ?? b.bundle } as Named,
+    room: { en: b.room, zh: zhBundles[i]?.room ?? b.room } as Named,
+  }));
+
+  const lovedEn = parseLovedBy(enHtml);
+  const lovedBy: Named[] = [];
+  for (const v of lovedEn) lovedBy.push({ en: v, zh: await zhVillager(v) });
+
+  const recipes = zip(parseRecipes(enHtml, false), zhHtml ? parseRecipes(zhHtml, true) : []);
+
+  return { bundles, lovedBy, recipes, quest: parseQuest(enHtml) };
+}
+
 function parseZhName(html: string): string | null {
   const m = html.match(/title="([^"]*) – 中文"/);
   return m ? m[1].trim() : null;
+}
+
+// Base (normal-quality) energy from the infobox "Energy / Health" row. Items that restore no
+// energy show 0; inedible items have no row at all (null). This gates the Preserves Jar and Keg,
+// which per the wiki accept only *positive energy* forage.
+function parseEnergy(html: string): number | null {
+  // <style>/<script> bodies survive naive tag-stripping and sit between the label and the
+  // number in the infobox, so drop those blocks first.
+  const text = html
+    .replace(/<style[\s\S]*?<\/style>|<script[\s\S]*?<\/script>/g, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&#?\w+;/g, ' ')
+    .replace(/\s+/g, ' ');
+  const m = text.match(/Energy\s*\/\s*Health\s+(-?\d+)/);
+  return m ? parseInt(m[1], 10) : null;
 }
 
 function parseBasePrice(html: string): number | null {
@@ -116,14 +184,22 @@ async function build() {
       }
     }
 
+    // Forage with no energy (e.g. Daffodil) is rejected by the Preserves Jar and the Keg, so
+    // tag it for the rules in shared/machines.json.
+    const energy = parseEnergy(html);
+    const tags = energy !== null && energy <= 0 ? [...entry.tags, 'zero_energy'] : entry.tags;
+
+    const uses = await buildUses(html, nameZh);
+
     items.push({
       id: entry.id,
       nameEn: entry.page,
       nameZh: nameZh ?? entry.page,
       basePrice: basePrice ?? 0,
       category: entry.category,
-      tags: entry.tags,
+      tags,
       source: url,
+      uses,
     });
   }
 
@@ -131,7 +207,11 @@ async function build() {
   const validated = validateItems(items);
   writeFileSync(OUT, JSON.stringify(validated, null, 2) + '\n');
 
+  // Derive roe and publish the shared dataset the iOS app reads.
+  const all = writeSharedItems(validated);
+
   console.log(`\n✅ wrote ${validated.length} items → ${OUT}`);
+  console.log(`   shared → ${all.length} items (incl. ${all.length - validated.length} derived roe)`);
   console.log(`   sprites → ${SPRITES}`);
   if (warnings.length) {
     console.warn(`\n⚠️  ${warnings.length} warnings (review in PROGRESS.md):`);

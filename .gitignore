@@ -14,3 +14,10 @@ testing screenshots/
 # stray build output at repo root
 /main.js
 /index-*.js
+
+# Xcode
+ios/build/
+DerivedData/
+*.xcuserdatad
+xcuserdata/
+*.xcworkspace/xcuserdata/
