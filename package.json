@@ -12,10 +12,14 @@
     "preview": "vite preview",
     "build:data": "tsx scripts/build-data.ts",
     "build:icon": "node scripts/logo.mjs",
-    "test": "tsx src/engine/compute.test.ts && tsx src/engine/routes.smoke.test.ts && tsx src/data/items.seed.test.ts",
+    "test": "tsx src/engine/compute.test.ts && tsx src/engine/routes.smoke.test.ts && tsx src/data/items.seed.test.ts && tsx src/engine/parity.test.ts",
     "verify": "tsc --noEmit && npm test",
     "package": "npm run build && cp package.json .pkgbak.json && electron-builder; ec=$?; [ -f .pkgbak.json ] && mv -f .pkgbak.json package.json; if [ $ec -ne 0 ]; then exit $ec; fi; node scripts/smoke-package.mjs",
-    "package:check": "node scripts/smoke-package.mjs"
+    "package:check": "node scripts/smoke-package.mjs",
+    "build:shared": "tsx scripts/derive-items.ts",
+    "build:fixtures": "tsx scripts/build-fixtures.ts",
+    "verify:ios": "bash scripts/verify-ios.sh",
+    "verify:all": "npm run verify && npm run verify:ios"
   },
   "dependencies": {},
   "devDependencies": {

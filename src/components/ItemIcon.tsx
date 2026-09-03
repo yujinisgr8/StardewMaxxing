@@ -1,8 +1,9 @@
 import { Category } from '../engine/types';
 
-// Real game sprites downloaded by `npm run build:data` into src/assets/items/<id>.png.
+// Real game sprites downloaded by `npm run build:data` into shared/sprites/<id>.png
+// (part of the shared core, so the iOS app bundles the very same files).
 // Vite bundles them; we resolve id → URL at build time.
-const SPRITE_URLS = import.meta.glob('../assets/items/*.png', {
+const SPRITE_URLS = import.meta.glob('../../shared/sprites/*.png', {
   eager: true,
   query: '?url',
   import: 'default',

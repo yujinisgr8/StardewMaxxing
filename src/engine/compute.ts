@@ -1,6 +1,6 @@
 // Turns a raw Item + Settings into a ranked list of ProcessRoutes for the UI.
 import { Item, Settings, ProcessRoute, RouteResult, AppliedBonus, QUALITY_MULT } from './types';
-import { MACHINES } from './machines';
+import { MACHINES, EXTRA_INPUT_COST } from './machines';
 
 const ARTISAN_MULT = 1.4; // Artisan profession: +40%
 const TILLER_MULT = 1.1; // Tiller profession: +10%
@@ -8,8 +8,8 @@ const RANCHER_MULT = 1.2; // Rancher profession: +20%
 const FISHER_MULT = 1.25; // Fisher profession: +25% (fish)
 const ANGLER_MULT = 1.5; // Angler profession: +50% (fish); supersedes Fisher (no stacking)
 
-// Opportunity cost of consumable extra inputs, at their wiki sell value.
-const EXTRA_INPUT_COST: Record<string, number> = { coal: 15 }; // Fish Smoker burns 1 coal/fish
+// Opportunity cost of consumable extra inputs (e.g. the Fish Smoker's coal) comes from
+// shared/machines.json, so iOS prices routes off the same numbers.
 
 /** Apply Settings (professions + input quality) to a machine's raw RouteResult. */
 function priceRoute(r: RouteResult, s: Settings): ProcessRoute {

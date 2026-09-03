@@ -1,0 +1,154 @@
+{
+  "$comment": "Declarative machine transform rules — the SHARED source of truth for both the Electron/TypeScript app and the SwiftUI iOS app. Every number here comes from stardewvalleywiki.com (see CLAUDE.md). Rules are evaluated top-to-bottom; the first match wins, and a machine that matches nothing cannot process the item. Value = round(mult * basePrice + offset), or `const`. Times are in-game minutes (1600 = one day); `agingDays` adds whole Cask days on top.",
+  "minutesPerDay": 1600,
+  "extraInputCost": { "coal": 15 },
+  "machines": [
+    {
+      "id": "raw",
+      "nameEn": "Sell raw",
+      "nameZh": "直接出售",
+      "comment": "The baseline every comparison needs.",
+      "defaults": {
+        "minutes": 0,
+        "artisanGood": false,
+        "qualitySensitive": true,
+        "tillerEligible": {
+          "anyOf": [
+            { "category": "vegetable" },
+            { "category": "flower" },
+            { "allOf": [{ "category": "fruit" }, { "notTag": "tree" }] }
+          ],
+          "$comment": "Tiller +10% covers crops & flowers. Tree fruit and forage are NOT crops."
+        },
+        "rancherEligible": {
+          "anyOf": [
+            { "category": "milk" },
+            { "category": "egg" },
+            { "category": "wool" },
+            { "tag": "truffle" }
+          ],
+          "$comment": "Rancher +20% is raw animal products only. Processed animal goods are Artisan."
+        },
+        "fishEligible": { "category": "fish" }
+      },
+      "rules": [
+        {
+          "when": true,
+          "outputId": "{id}",
+          "nameEn": "{n}",
+          "nameZh": "{n}",
+          "value": { "mult": 1 }
+        }
+      ]
+    },
+    {
+      "id": "keg",
+      "nameEn": "Keg",
+      "nameZh": "小桶",
+      "defaults": { "artisanGood": true, "tillerEligible": false, "qualitySensitive": false },
+      "rules": [
+        { "when": { "tag": "hops" }, "outputId": "pale_ale", "nameEn": "Pale Ale", "nameZh": "淡啤酒", "value": { "const": 300 }, "minutes": 2250 },
+        { "when": { "tag": "wheat" }, "outputId": "beer", "nameEn": "Beer", "nameZh": "啤酒", "value": { "const": 200 }, "minutes": 1750 },
+        { "when": { "tag": "coffee_bean" }, "outputId": "coffee", "nameEn": "Coffee", "nameZh": "咖啡", "value": { "const": 150 }, "inputCount": 5, "minutes": 120 },
+        { "when": { "tag": "honey" }, "outputId": "mead", "nameEn": "Mead", "nameZh": "蜜蜂酒", "value": { "const": 300 }, "minutes": 600 },
+        { "when": { "tag": "tea_leaves" }, "outputId": "green_tea", "nameEn": "Green Tea", "nameZh": "绿茶", "value": { "const": 100 }, "minutes": 180 },
+        { "when": { "category": "fruit" }, "outputId": "{id}_wine", "nameEn": "{n} Wine", "nameZh": "{n}酒", "value": { "mult": 3, "inedible": { "mult": 0.25 } }, "minutes": 10000 },
+        { "comment": "Wiki: Any Vegetable, or any POSITIVE ENERGY Forage (other than Mushrooms).", "when": { "anyOf": [{ "category": "vegetable" }, { "allOf": [{ "category": "forage" }, { "notTag": "zero_energy" }] }] }, "outputId": "{id}_juice", "nameEn": "{n} Juice", "nameZh": "{n}汁", "value": { "mult": 2.25, "inedible": { "mult": 1 } }, "minutes": 6000 }
+      ]
+    },
+    {
+      "id": "jar",
+      "nameEn": "Preserves Jar",
+      "nameZh": "罐头瓶",
+      "defaults": { "artisanGood": true, "tillerEligible": false, "qualitySensitive": false, "minutes": 4000 },
+      "rules": [
+        { "when": { "tag": "sturgeon_roe" }, "outputId": "caviar", "nameEn": "Caviar", "nameZh": "鱼籽酱", "value": { "const": 500 } },
+        { "when": { "id": "roe" }, "outputId": "aged_{id}", "nameEn": "Aged Roe", "nameZh": "腌鱼籽", "value": { "mult": 2 }, "artisanGood": false, "comment": "Aged Roe is NOT affected by Artisan." },
+        { "when": { "category": "roe" }, "outputId": "aged_{id}", "nameEn": "Aged {n}", "nameZh": "腌{n}", "value": { "mult": 2 }, "artisanGood": false },
+        { "when": { "category": "fruit" }, "outputId": "{id}_jelly", "nameEn": "{n} Jelly", "nameZh": "{n}果酱", "value": { "mult": 2, "offset": 50, "inedible": { "mult": 0.5, "offset": 0 } } },
+        { "comment": "Wiki: Any vegetable / any mushroom except Red Mushroom / any POSITIVE ENERGY forage. Daffodil restores 0 energy, so it is rejected.", "when": { "anyOf": [{ "category": "vegetable" }, { "allOf": [{ "category": "mushroom" }, { "notTag": "red_mushroom" }] }, { "allOf": [{ "category": "forage" }, { "notTag": "zero_energy" }] }] }, "outputId": "{id}_pickles", "nameEn": "Pickled {n}", "nameZh": "腌{n}", "value": { "mult": 2, "offset": 50, "inedible": { "mult": 0.5, "offset": 0 } } }
+      ]
+    },
+    {
+      "id": "dehydrator",
+      "nameEn": "Dehydrator",
+      "nameZh": "烘干机",
+      "defaults": { "artisanGood": true, "tillerEligible": false, "qualitySensitive": false, "inputCount": 5, "minutes": 1600 },
+      "rules": [
+        { "when": { "tag": "grape" }, "outputId": "raisins", "nameEn": "Raisins", "nameZh": "葡萄干", "value": { "const": 600 } },
+        { "when": { "categoryIn": ["fruit", "mushroom"] }, "outputId": "dried_{id}", "nameEn": "Dried {n}", "nameZh": "{n}干", "value": { "mult": 7.5, "offset": 25 } }
+      ]
+    },
+    {
+      "id": "smoker",
+      "nameEn": "Fish Smoker",
+      "nameZh": "熏鱼机",
+      "accepts": { "category": "fish" },
+      "defaults": { "artisanGood": true, "tillerEligible": false, "qualitySensitive": true, "fishEligible": true, "minutes": 50, "extraInputs": ["coal"] },
+      "comment": "Smoked Fish = 2x fish price, retaining quality; benefits from Fisher/Angler AND Artisan.",
+      "rules": [
+        { "when": true, "outputId": "smoked_{id}", "nameEn": "Smoked {n}", "nameZh": "熏{n}", "value": { "mult": 2 } }
+      ]
+    },
+    {
+      "id": "mayo",
+      "nameEn": "Mayonnaise Machine",
+      "nameZh": "蛋黄酱机",
+      "accepts": { "category": "egg" },
+      "defaults": { "artisanGood": true, "tillerEligible": false, "qualitySensitive": false, "minutes": 180 },
+      "rules": [
+        { "when": { "tag": "duck_egg" }, "outputId": "duck_mayo", "nameEn": "Duck Mayonnaise", "nameZh": "鸭蛋黄酱", "value": { "const": 375 } },
+        { "when": { "tag": "void_egg" }, "outputId": "void_mayo", "nameEn": "Void Mayonnaise", "nameZh": "虚空蛋黄酱", "value": { "const": 275 } },
+        { "when": { "tag": "dino_egg" }, "outputId": "dino_mayo", "nameEn": "Dinosaur Mayonnaise", "nameZh": "恐龙蛋黄酱", "value": { "const": 800 } },
+        { "when": { "id": "large_egg" }, "outputId": "mayo", "nameEn": "Mayonnaise", "nameZh": "蛋黄酱", "value": { "const": 285 }, "comment": "A Large Egg yields GOLD-quality Mayonnaise (190 x 1.5). Egg star quality does not carry through." },
+        { "when": true, "outputId": "mayo", "nameEn": "Mayonnaise", "nameZh": "蛋黄酱", "value": { "const": 190 } }
+      ]
+    },
+    {
+      "id": "cheese",
+      "nameEn": "Cheese Press",
+      "nameZh": "压酪机",
+      "accepts": { "category": "milk" },
+      "defaults": { "artisanGood": true, "tillerEligible": false, "qualitySensitive": false, "minutes": 200 },
+      "comment": "Large Milk / Large Goat Milk yield GOLD-quality cheese (x1.5).",
+      "rules": [
+        { "when": { "allOf": [{ "tag": "goat_milk" }, { "idPrefix": "large_" }] }, "outputId": "goat_cheese", "nameEn": "Goat Cheese", "nameZh": "山羊奶酪", "value": { "const": 600 } },
+        { "when": { "tag": "goat_milk" }, "outputId": "goat_cheese", "nameEn": "Goat Cheese", "nameZh": "山羊奶酪", "value": { "const": 400 } },
+        { "when": { "idPrefix": "large_" }, "outputId": "cheese", "nameEn": "Cheese", "nameZh": "奶酪", "value": { "const": 345 } },
+        { "when": true, "outputId": "cheese", "nameEn": "Cheese", "nameZh": "奶酪", "value": { "const": 230 } }
+      ]
+    },
+    {
+      "id": "oil",
+      "nameEn": "Oil Maker",
+      "nameZh": "产油机",
+      "defaults": { "artisanGood": true, "tillerEligible": false, "qualitySensitive": false },
+      "rules": [
+        { "when": { "tag": "truffle" }, "outputId": "truffle_oil", "nameEn": "Truffle Oil", "nameZh": "松露油", "value": { "const": 1065 }, "minutes": 360 },
+        { "when": { "tag": "oilseed" }, "outputId": "oil", "nameEn": "Oil", "nameZh": "油", "value": { "const": 100 }, "minutes": 1000 }
+      ]
+    },
+    {
+      "id": "loom",
+      "nameEn": "Loom",
+      "nameZh": "织布机",
+      "accepts": { "category": "wool" },
+      "defaults": { "artisanGood": true, "tillerEligible": false, "qualitySensitive": false, "minutes": 240 },
+      "rules": [
+        { "when": true, "outputId": "cloth", "nameEn": "Cloth", "nameZh": "布料", "value": { "const": 470 } }
+      ]
+    },
+    {
+      "id": "cask",
+      "nameEn": "Cask (→ Iridium)",
+      "nameZh": "木桶（→铱星）",
+      "comment": "Two-step route: includes the upstream machine's time plus days to Iridium (wiki: Wine 56, Cheese 14).",
+      "defaults": { "artisanGood": true, "tillerEligible": false, "qualitySensitive": false },
+      "rules": [
+        { "when": { "allOf": [{ "category": "fruit" }, { "notTag": "inedible" }] }, "outputId": "{id}_wine_iridium", "nameEn": "{n} Wine (Iridium)", "nameZh": "{n}酒（铱星）", "value": { "mult": 6 }, "minutes": 10000, "agingDays": 56, "note": "Keg→Wine then aged to Iridium in a Cask" },
+        { "when": { "allOf": [{ "category": "milk" }, { "tag": "goat_milk" }] }, "outputId": "goat_cheese_iridium", "nameEn": "Goat Cheese (Iridium)", "nameZh": "山羊奶酪（铱星）", "value": { "const": 800 }, "minutes": 200, "agingDays": 14, "note": "Cheese Press then aged to Iridium in a Cask" },
+        { "when": { "category": "milk" }, "outputId": "cheese_iridium", "nameEn": "Cheese (Iridium)", "nameZh": "奶酪（铱星）", "value": { "const": 460 }, "minutes": 200, "agingDays": 14, "note": "Cheese Press then aged to Iridium in a Cask" }
+      ]
+    }
+  ]
+}
