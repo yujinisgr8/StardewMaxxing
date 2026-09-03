@@ -1,6 +1,6 @@
 // Runtime validation for item datasets (seed + generated). Keeps bad data from
 // silently breaking the engine; used by the data loader and the build script.
-import { Item, Category } from './types';
+import { Item, ItemUses, Category } from './types';
 
 const CATEGORIES: Category[] = [
   'fruit', 'vegetable', 'flower', 'forage', 'fish',
@@ -35,6 +35,7 @@ export function validateItem(raw: unknown, index: number): Item {
     category: o.category as Category,
     tags: o.tags as string[],
     source: typeof o.source === 'string' ? o.source : undefined,
+    uses: typeof o.uses === 'object' && o.uses !== null ? (o.uses as ItemUses) : undefined,
   };
 }
 

@@ -4,7 +4,14 @@
 > Update the **Current state** block + check off the task at the end of every task.
 
 ## Current state
-- **Done:** v0.1 (T0–T9) + v0.2 (V1–V6) + v0.3 (P1–P3). ✅ App complete & verified in-browser.
+- **Done:** v0.1 (T0–T9) + v0.2 (V1–V6) + v0.3 (P1–P3) + **v0.4 (shared core + iOS app)**.
+- **v0.4 added (2026-09-02):** the engine's rules moved OUT of code and into
+  **`shared/machines.json`**, a declarative rule file both apps interpret; a **SwiftUI iOS app**
+  in `ios/` reads the same shared data; and **`shared/fixtures/parity.json`** pins the two
+  engines to identical output (8 settings × 217 items = 4408 ranked routes, verified equal).
+  `src/engine/machines.ts` is now a 162-line interpreter (was 361 lines of hardcoded rules);
+  the refactor was proved behaviour-preserving by snapshot-diffing all 217 items × 10 machines.
+  Sprites, the Zpix font and the item dataset all moved into `shared/`.
 - **v0.3 added (player-feedback pass):** game-accurate **profession tree** (Lvl 5 Rancher⊕Tiller →
   Lvl 10 Artisan/Agriculturist or Coopmaster/Shepherd) as two labeled dropdowns; added missing
   **Rancher +20%** to raw animal products (milk/egg/wool/truffle); **whole-day "collect next
@@ -21,7 +28,27 @@
   (in-game they ARE category Fish → Fisher/Angler-eligible, Fish Smoker "Any Fish" accepts them per
   the wiki's crab-pot footnote, and Fish Ponds take crab-pot fish → Roe). Sprites + zh names pulled
   by `build:data`. Dataset now **151 generated items → 217 with derived roe**.
-- **Next step:** none — v0.3 verified & **re-packaged** (`release/StardewMaxxing.app` + DMG rebuilt
+- **v0.5 added (2026-09-02):** an **"Other uses" panel** in both apps — Community Center bundle,
+  villagers who love it as a gift, recipes it's an ingredient in, and Help Wanted quests, all
+  bilingual and scraped from the wiki into `items.json`'s `uses` block (86 bundles, 398 recipes,
+  37 loved-by, 86 quests; only 2 entries fall back to English, both genuine zh-wiki gaps).
+  Motivated by Daffodil, whose only route is "sell raw 30g" — the panel surfaces that it's a
+  Spring Foraging Bundle item and Sandy's loved gift.
+- **v0.5 bug fix — zero-energy forage:** the Preserves Jar/Keg rules used to accept ALL forage,
+  but the wiki restricts both to *positive energy* forage. **Daffodil restores 0 energy**, so the
+  app wrongly offered Pickled Daffodil (110g) and Daffodil Juice (68g) — neither exists in game.
+  Fixed by scraping the infobox Energy value, tagging `zero_energy` (Daffodil is the ONLY item in
+  the dataset that qualifies), and gating the forage clauses in `shared/machines.json`. The Jar
+  rule also now excludes Red Mushroom per the wiki, for future-proofing. **Zero Swift changes** —
+  the iOS app picked the fix up from the shared rule file, which is the payoff of the v0.4 design.
+  Fixture diff confirmed exactly one item changed across all 8 settings cases (4408 → 4392
+  routes). Regression test: "Preserves Jar / Keg reject ZERO-ENERGY forage".
+- **Next step (iOS):** install on a real iPhone. The app builds & runs on the simulator; putting
+  it on a device needs a signing team in Xcode (free personal team works — the cert expires
+  every 7 days, so re-build weekly; a paid account removes that). Open `ios/StardewMaxxing.xcodeproj`,
+  set the team on the target, pick your iPhone, Run. Polish ideas: the nav title still uses the
+  system font (not Zpix); an app icon; a share/compare view.
+- **Next step (desktop):** none — v0.3 verified & **re-packaged** (`release/StardewMaxxing.app` + DMG rebuilt
   2026-06-17, includes the ErrorBoundary). NOTE: the packaged app predates the crab-pot items —
   re-run `npm run package` to ship them. Future ideas: product/output icons in
   the results rows, app icon
@@ -146,6 +173,49 @@ so the window can't get stuck hidden. Diagnose packaged-render issues with
 - **Packaging:** renderer served over a custom `app://` scheme (not file://) to fix raw-text/blank
   windows; `npm run package` self-runs a CDP smoke test (`scripts/smoke-package.mjs`) that fails the
   build if the packaged app doesn't render. `package.json` backed up/restored around electron-builder.
+
+
+## v0.4 — shared core + iOS app (done)
+
+### Why the rules became data
+`machines.ts` was already a decision table: a predicate on category/tags/id producing an output
+id, EN/zh name templates, a value expression, batch counts, minutes and four flags. Values only
+ever take the forms `const`, `mult×base`, `mult×base+offset`, or the same with an `inedible`
+variant. So the rules moved into `shared/machines.json` and BOTH apps interpret them — a wiki
+correction is now a one-line JSON edit that lands on desktop and iOS at once, with no Swift change.
+
+### The shared core (`shared/`)
+| File | What it is | Consumed by |
+| --- | --- | --- |
+| `machines.json` | 10 machines / 31 rules — every formula, time, multiplier | both engines |
+| `items.json` | 217 items, roe already derived at build time | both apps |
+| `sprites/*.png` | 153 game sprites | both apps |
+| `fonts/Zpix.ttf` | the pixel font | both apps |
+| `fixtures/parity.json` | golden engine output — the cross-platform contract | both test suites |
+
+Roe derivation moved from `src/data/items.ts` into `scripts/derive-items.ts` (build time), so the
+Swift side needs no derivation logic — it just decodes `items.json`.
+
+### Keeping the two engines honest
+`npm run build:fixtures` records the TypeScript engine's ranked routes for 8 settings × 217 items.
+Both `npm run verify` (TS) and `npm run verify:ios` (Swift) assert against that same file, so the
+engines cannot silently drift. Two parity traps that this caught by design:
+- **Rounding:** JS `Math.round` rounds halves toward +∞; Swift's `rounded()` rounds away from zero.
+  Swift uses an explicit `jsRound()` (`floor(x + 0.5)`).
+- **Sort stability:** JS `Array.sort` is stable, Swift's is not. Ties are broken by original
+  machine order so rankings match.
+
+### iOS app (`ios/`)
+- SwiftUI, iOS 17+, `Engine/` (Models, Rules, Compute, DataStore) + `Views/`.
+- `StardewMaxxing.xcodeproj` is GENERATED by `scripts/gen-xcodeproj.py` (stable UUIDs, so
+  regenerating produces no spurious diff). Sources use an Xcode file-system-synchronized group,
+  so new `.swift` files need no project edit. `shared/` is attached as resource references —
+  the sprites as a folder reference, so `npm run build:data` flows through on the next build.
+- The 1.4 MB parity fixture is deliberately NOT bundled in the app (test-only).
+- **Verified on the iPhone 17 Pro simulator:** Blueberry → Cask 300g / Wine 150g / Jelly 150g /
+  Dried 80g / raw 50g (identical to desktop); Bream + Artisan + Angler → Smoked Bream **174g**
+  with "Artisan + Angler stacked" and coal deducted; Bream Roe 52g; profession-tree gating
+  (Level 10 branches off the Level 5 pick); EN ↔ 中文 toggle; sprites and Zpix font render.
 
 ## Verification (run at T9, spot-check earlier)
 1. `npm run dev` → Electron window with HMR.

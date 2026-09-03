@@ -212,4 +212,21 @@ check('profRelevance: which profession trees apply per item', () => {
   assert.deepEqual(profRelevance(sturgeonRoe), { farming: true, fishing: false }); // Caviar is artisan
 });
 
+check('Preserves Jar / Keg reject ZERO-ENERGY forage (Daffodil), but accept the rest', () => {
+  // The wiki restricts both machines to *positive energy* forage. Daffodil restores 0 energy,
+  // so "Pickled Daffodil" and "Daffodil Juice" do not exist in game — selling raw is its only
+  // route. Regression guard: the rules used to accept all forage unconditionally.
+  const daffodil: Item = {
+    id: 'daffodil', nameEn: 'Daffodil', nameZh: '黄水仙',
+    basePrice: 30, category: 'forage', tags: ['edible', 'zero_energy'],
+  };
+  const dandelion: Item = {
+    id: 'dandelion', nameEn: 'Dandelion', nameZh: '蒲公英',
+    basePrice: 40, category: 'forage', tags: ['edible'], // 25 energy → still allowed
+  };
+  assert.deepEqual(computeRoutes(daffodil, base).map((r) => r.machineId), ['raw']);
+  assert.deepEqual(computeRoutes(dandelion, base).map((r) => r.machineId).sort(), ['jar', 'keg', 'raw']);
+  assert.equal(route(dandelion, base, 'jar').value, 130); // 2 × 40 + 50
+});
+
 console.log(`\n${passed} checks passed ✅`);
